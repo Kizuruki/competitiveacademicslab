@@ -1,5 +1,5 @@
 {
- "built": "2026-10-28",
+ "built": "2026-10-29",
  "minFreq": 2,
  "packs": [
   {
@@ -9,11 +9,6 @@
    "file": "geo-africa-mediterranean.json",
    "clues": 3961,
    "answers": 515,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ],
    "region": "Africa + Mediterranean"
   },
   {
@@ -23,11 +18,6 @@
    "file": "geo-asia-middle-east-oceania-pacific.json",
    "clues": 8170,
    "answers": 1083,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ],
    "region": "Asia + Middle East + Oceania/Pacific"
   },
   {
@@ -37,11 +27,6 @@
    "file": "geo-eastern-central-us-canada.json",
    "clues": 13686,
    "answers": 1875,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ],
    "region": "Eastern/Central U.S. + Canada"
   },
   {
@@ -51,11 +36,6 @@
    "file": "geo-europe-russia.json",
    "clues": 12299,
    "answers": 1754,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ],
    "region": "Europe + Russia"
   },
   {
@@ -65,11 +45,6 @@
    "file": "geo-western-us-latin-america-caribbean.json",
    "clues": 9806,
    "answers": 1334,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ],
    "region": "Western U.S. + Latin America/Caribbean"
   },
   {
@@ -79,11 +54,7 @@
    "file": "hist-ancient.json",
    "clues": 1472,
    "answers": 188,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ]
+   "siteFile": "hist-ancient.site.json"
   },
   {
    "id": "hist-european",
@@ -92,11 +63,7 @@
    "file": "hist-european.json",
    "clues": 4289,
    "answers": 523,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ]
+   "siteFile": "hist-european.site.json"
   },
   {
    "id": "hist-other",
@@ -105,11 +72,7 @@
    "file": "hist-other.json",
    "clues": 3636,
    "answers": 564,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ]
+   "siteFile": "hist-other.site.json"
   },
   {
    "id": "hist-us",
@@ -118,11 +81,7 @@
    "file": "hist-us.json",
    "clues": 4780,
    "answers": 658,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ]
+   "siteFile": "hist-us.site.json"
   },
   {
    "id": "hist-world",
@@ -131,11 +90,7 @@
    "file": "hist-world.json",
    "clues": 5273,
    "answers": 679,
-   "methods": [
-    "flashcards",
-    "tossups",
-    "matching"
-   ]
+   "siteFile": "hist-world.site.json"
   }
  ]
 }

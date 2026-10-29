@@ -37,9 +37,10 @@ export function posteriors(steps, study, bp = DEFAULT_BLUEPRINT, horizonDays = 3
   for (const m of METHODS) {
     const prior = bp[m] || DEFAULT_BLUEPRINT[m];
     const mine = steps.filter((s) => s.method === m);
+    const w = (x) => x.weight ?? 1;   // real-study evidence counts half: its clues aren't controlled
     // learn rate
-    const hours = mine.reduce((s, x) => s + x.activeHours, 0);
-    const learnedClues = mine.reduce((s, x) => s + (x.learnedPerHour !== null ? x.learnedPerHour * x.activeHours : 0), 0);
+    const hours = mine.reduce((s, x) => s + w(x) * x.activeHours, 0);
+    const learnedClues = mine.reduce((s, x) => s + (x.learnedPerHour !== null ? w(x) * x.learnedPerHour * x.activeHours : 0), 0);
     const h0 = prior.strength.hours;
     const learnMean = (h0 * prior.learn + learnedClues) / (h0 + hours);
     const learnSd = learnMean * 0.6 / Math.sqrt(1 + hours / h0);
@@ -48,11 +49,11 @@ export function posteriors(steps, study, bp = DEFAULT_BLUEPRINT, horizonDays = 3
     let a = prior.kept * prior.strength.items, b = (1 - prior.kept) * prior.strength.items, keptItems = 0;
     for (const s of mine) {
       if (s.keptAtH === null || !s.lastCheckin) continue;
-      const n = s.checkins[s.lastCheckin].n * Math.sqrt(Math.min(1, (s.lastCheckin + 1) / (horizonDays + 1)));
+      const n = w(s) * s.checkins[s.lastCheckin].n * Math.sqrt(Math.min(1, (s.lastCheckin + 1) / (horizonDays + 1)));
       a += s.keptAtH * n; b += (1 - s.keptAtH) * n; keptItems += n;
     }
     // engagement
-    const obs = mine.map((s) => calibrationEngagement(s.engagement)).filter((x) => x !== null);
+    const obs = mine.filter((s) => s.engagement).map((s) => calibrationEngagement(s.engagement)).filter((x) => x !== null);
     if (studyMean && study[m]) for (const minutes of study[m]) obs.push(clamp(minutes / studyMean, 0.3, 2));
     const k0 = prior.strength.sessions;
     const engageMean = (k0 * prior.engage + obs.reduce((s, x) => s + x, 0)) / (k0 + obs.length);
@@ -61,7 +62,7 @@ export function posteriors(steps, study, bp = DEFAULT_BLUEPRINT, horizonDays = 3
       learn: { mean: learnMean, sd: learnSd, hours },
       kept: { a, b, mean: a / (a + b), items: keptItems },
       engage: { mean: engageMean, sd: engageSd, n: obs.length },
-      evidence: { hours, keptItems, sessions: mine.length },
+      evidence: { hours, keptItems, sessions: mine.filter((x) => x.source !== 'study').length, study: mine.some((x) => x.source === 'study') },
     };
   }
   return out;

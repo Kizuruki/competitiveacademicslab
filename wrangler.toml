@@ -1,10 +1,16 @@
-# The lab server (worker/lab-worker.js). Only needed for the school survey.
-#   npx wrangler d1 create study-lab        → copy the database_id below
-#   npx wrangler secret put ADMIN_KEY       → the coach's key for the export and the coach view
-#   npx wrangler deploy                     → put the workers.dev address in the lab's Settings
-name = "study-lab"
+# The lab server (worker/lab-worker.js): students' progress online, and the coach view.
+#   1. Storage & Databases → D1 → create a database, put its name and id below.
+#   2. Worker → Settings → Variables and Secrets → add ADMIN_KEY as a Secret.
+#   3. Put the worker's workers.dev address in js/config.js (LAB_URL).
+name = "competitiveacademicslab"
 main = "worker/lab-worker.js"
 compatibility_date = "2025-10-01"
+# lets this worker call the bowl sites' worker (same workers.dev subdomain) to check passwords
+compatibility_flags = ["global_fetch_strictly_public"]
+
+[vars]
+MAIN_URL = "https://patient-base-c952.javalutionization.workers.dev"
+ADMIN_USERS = "kizuruki"
 
 [[d1_databases]]
 binding = "DB"

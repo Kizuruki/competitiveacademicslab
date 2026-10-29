@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CIVS } from '../js/engine/calibration.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const world = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/fantasy-world.json'), 'utf8'));
@@ -77,6 +78,7 @@ if (real.size) {
   for (const c of world.clues) for (const m of (c.study + ' ' + c.test).matchAll(/\b[A-Z][a-z]+(?: [A-Z][a-z]+)?/g)) extra.add(m[0]);
   for (const e of extra) { if (/^The\b/.test(e)) continue; const k = tokens(e).join(' '); if (k.split(' ').length && real.has(k) && !/^(This|Which|In|On|To|By|Under|Pilgrims|Old|Lake|Mount|Queen|King|Khan|Archon|Battle|Treaty)$/.test(e)) warn.push(`clue name "${e}" is also a real answer (${real.get(k)})`); }
 }
+if (world.civs.map((c) => c.id).join() !== CIVS.join()) bad(`civilization ids ${world.civs.map((c) => c.id).join()} differ from CIVS in js/engine/calibration.js`);
 console.log(`civilizations ${world.civs.length}, answers ${world.answers.length}, clues ${world.clues.length}`);
 console.log('average name length:', lens.map(([c, l]) => `${c} ${l}`).join(', '));
 if (real.size) console.log(`checked against ${real.size} real History/Geography answers`);
