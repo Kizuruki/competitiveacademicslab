@@ -1,0 +1,12 @@
+# The lab server (worker/lab-worker.js). Only needed for the school survey.
+#   npx wrangler d1 create study-lab        → copy the database_id below
+#   npx wrangler secret put ADMIN_KEY       → the coach's key for the export and the coach view
+#   npx wrangler deploy                     → put the workers.dev address in the lab's Settings
+name = "study-lab"
+main = "worker/lab-worker.js"
+compatibility_date = "2025-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "study-lab"
+database_id = "REPLACE-WITH-YOUR-DATABASE-ID"

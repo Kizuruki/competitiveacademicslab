@@ -1,0 +1,3338 @@
+{
+ "pack": "fantasy-v1",
+ "title": "Calibration world",
+ "about": "Invented facts for comparing study methods without anyone knowing the answers in advance. Every civilization fills the same 15 slots with the same kinds of facts.",
+ "slots": [
+  {
+   "id": "ruler",
+   "kind": "person",
+   "chapter": 1
+  },
+  {
+   "id": "general",
+   "kind": "person",
+   "chapter": 2
+  },
+  {
+   "id": "scholar",
+   "kind": "person",
+   "chapter": 3
+  },
+  {
+   "id": "poet",
+   "kind": "person",
+   "chapter": 5
+  },
+  {
+   "id": "city",
+   "kind": "place",
+   "chapter": 1
+  },
+  {
+   "id": "river",
+   "kind": "place",
+   "chapter": 4
+  },
+  {
+   "id": "mountain",
+   "kind": "place",
+   "chapter": 4
+  },
+  {
+   "id": "island",
+   "kind": "place",
+   "chapter": 5
+  },
+  {
+   "id": "battle",
+   "kind": "event",
+   "chapter": 2
+  },
+  {
+   "id": "treaty",
+   "kind": "event",
+   "chapter": 2
+  },
+  {
+   "id": "disaster",
+   "kind": "event",
+   "chapter": 3
+  },
+  {
+   "id": "poem",
+   "kind": "work",
+   "chapter": 5
+  },
+  {
+   "id": "monument",
+   "kind": "work",
+   "chapter": 1
+  },
+  {
+   "id": "deity",
+   "kind": "belief",
+   "chapter": 4
+  },
+  {
+   "id": "code",
+   "kind": "law",
+   "chapter": 3
+  }
+ ],
+ "chapters": [
+  {
+   "n": 1,
+   "title": "The Founding",
+   "slots": [
+    "ruler",
+    "city",
+    "monument"
+   ]
+  },
+  {
+   "n": 2,
+   "title": "The War",
+   "slots": [
+    "general",
+    "battle",
+    "treaty"
+   ]
+  },
+  {
+   "n": 3,
+   "title": "The Warning",
+   "slots": [
+    "scholar",
+    "disaster",
+    "code"
+   ]
+  },
+  {
+   "n": 4,
+   "title": "The Land",
+   "slots": [
+    "river",
+    "mountain",
+    "deity"
+   ]
+  },
+  {
+   "n": 5,
+   "title": "The Song",
+   "slots": [
+    "poet",
+    "island",
+    "poem"
+   ]
+  }
+ ],
+ "civs": [
+  {
+   "id": "ostrevan",
+   "name": "The Ostrevan Isles",
+   "blurb": "Seven islands of glassmakers and sailors, ruled from the harbor city of Veshka.",
+   "story": [
+    {
+     "n": 1,
+     "title": "The Founding",
+     "text": "Long ago, the seven Ostrevan islands answered to seven quarrelling harbor-lords. Ysolde Marrow, a net-mender's daughter, challenged them all to a rowing race around the outer reefs and won it by half a length, and so the seven islands were united under one queen. When the goldsmiths offered her a crown, she sent it back and wore a circlet of green sea-glass instead, saying that the islands were made of sand and fire, not gold.\n\nYsolde moved her court to Veshka, a city at the mouth of the Ommet River where the glassblowers kept their furnaces burning day and night. Each evening the harbor of Veshka was closed by a great chain stretched between two towers, so no raider could slip in after dark. Generations later, the lower quarter of the city would be lost to the Saltgrave Flood, but in Ysolde's day it was the busiest place in the isles.\n\nTo join the harbor to her palace on the cliff, the queen ordered the Glass Stair. More than ten thousand blocks of green glass were set into the rock, climbing from the harbor to the palace gates. Sailors soon noticed that the Stair also works as a sundial: as the sun moves, its long shadow crosses the harbor and marks the hours."
+    },
+    {
+     "n": 2,
+     "title": "The War",
+     "text": "Ysolde's younger brother, Corvin Ashlay, commanded her ships. When the raiders of Skarth came south with forty longboats, Corvin met them in Brannoch Sound, the strait where the Ommet River pours into the Pale Sea. In the middle of the fighting the moon slid across the sun, and the battle went on in the strange darkness of a total eclipse. Corvin used the dark and the outgoing tide: he set burning rafts loose on the current, and the Skarth fleet scattered in panic. The Ostrevans won the day.\n\nThe victory at Brannoch Sound led directly to the Treaty of Quell. Queen Ysolde and the chief of Skarth sealed it aboard a ship anchored off the island of Lisk. Under its terms, Skarth paid a yearly tribute of one hundred barrels of salt fish. So that it could never be quietly altered, the treaty was engraved on a sheet of glass.\n\nCorvin's good fortune did not last. In old age he quarrelled with the court, and he spent his last years in exile on Lisk, within sight of the place where the treaty had been signed."
+    },
+    {
+     "n": 3,
+     "title": "The Warning",
+     "text": "The scholar Ilvane Docht founded the Lantern School in Veshka, where students studied the tides by lamplight. Her most famous invention was a glass tide-clock that measured time with seawater dripping from one bowl into another. Oddly, for someone who spent her life studying the sea, she is said never once to have set foot on a ship.\n\nWatching her clock and the sky, Ilvane predicted the Saltgrave Flood two years before it happened. Few believed her. In the year 214 of the Tide Reckoning, a storm flood swept over the harbor and destroyed the lower quarter of Veshka. Every year since, the islanders have remembered the flood by floating candles in glass bowls on the water.\n\nAfter the flood, the islands' laws were gathered into the Brine Code, a law code of thirty-three articles. It is painted on the walls of the harbor towers in Veshka, where every sailor can read it. One article says that anyone who rescues a sailor may claim a share of the ship's cargo. Under the Brine Code, thieves were made to row the queen's barge."
+    },
+    {
+     "n": 4,
+     "title": "The Land",
+     "text": "The Ommet River rises on the slopes of Mount Haverl and runs down through the largest island before emptying into the Pale Sea. Its name means 'the silver thread' in Old Ostrevan. Each spring the river glows faintly blue at night, lit by countless tiny shining creatures carried down in the current.\n\nMount Haverl is crowned by a crater lake at its summit. The mountain is mined for the white sand that the glassblowers of Veshka melt into Ostrevan glass. It also holds the main shrine of Oruna, and on the longest day of the year pilgrims climb Haverl barefoot to reach it.\n\nOruna is the goddess of tides. Her sacred animal is the white seal, and fishermen who see one take it as her blessing. At every new moon the islanders honor Oruna by throwing a glass bead into the sea."
+    },
+    {
+     "n": 5,
+     "title": "The Song",
+     "text": "The poet Tamsin Rook wrote The Lay of Nine Lanterns, which tells of Corvin Ashlay's night voyage to burn the Skarth fleet. The poem has twelve cantos, each beginning at a different lighthouse, and it opens with the line 'The tide remembers every oar.' Tamsin wrote every line to match the rhythm of oar strokes, so that rowers could chant it as they pulled. Queen Ysolde paid her in pearls, one pearl for every verse.\n\nTamsin's end is a mystery: she vanished at sea while sailing to Lisk. Lisk is a small, windswept island whose name means 'the last stone.' Its lighthouse burns whale oil, and its shellfish are the only source of purple dye in the Ostrevan Isles. It was on Lisk, too, that Corvin Ashlay lived out his exile, and some say Tamsin was sailing there to visit him."
+    }
+   ]
+  },
+  {
+   "id": "kaldrun",
+   "name": "The Kaldrun Highlands",
+   "blurb": "Nine mining clans in the high valleys, ruled from the forge city of Durmholt.",
+   "story": [
+    {
+     "n": 1,
+     "title": "The Founding",
+     "text": "In the high valleys of Kaldrun, nine mining clans once fought over every seam of ore. Hadrek Stoun, a quarryman's son, challenged their chiefs to a stone-lifting contest and outlasted every one of them, and so the nine clans were united under one king. When the goldsmiths brought him a golden crown, he refused it and wore a crown of black iron instead, saying that the mountains were made of iron, not gold.\n\nHadrek moved his royal hall to Durmholt, a city at the head of the Varn River's gorge, famous for iron forges whose smoke never cleared. The only road into Durmholt was closed each night by a great wheel of stone rolled across it. Generations later, the upper quarter of the city would be destroyed in the Cinderveil Eruption, but under Hadrek it was the richest town in the highlands.\n\nTo guard the way into his city, the king ordered the Anvil Gate. More than three thousand iron ingots were forged into it, and it spans the road from the Varn gorge into Durmholt. Travelers soon learned that the Gate also works as a bell: when the mountain wind blows through its bars, it rings."
+    },
+    {
+     "n": 2,
+     "title": "The War",
+     "text": "Hadrek's younger sister, Brisa Volk, led his armies. When the lowland army of Merrin marched up the valley, Brisa met them at Coldmarch Pass, the gorge where the Varn River runs into Lake Thale. The battle was fought in a sudden summer hailstorm that rattled off every helmet. Brisa had climbed the cliffs before dawn, and at her signal a rockslide came down and trapped the enemy in the narrow valley. The Kaldrun won the day.\n\nThe victory at Coldmarch Pass led directly to the Treaty of Grisk. King Hadrek and the lord of Merrin sealed it in a cave on the shore opposite the island of Breck. Under its terms, Merrin paid a yearly tribute of two hundred sacks of grain. So that it could never be quietly altered, the treaty was engraved on an iron plate.\n\nBrisa's good fortune did not last. In old age she quarrelled with the court, and she spent her last years in exile on Breck, across the water from the place where the treaty had been signed."
+    },
+    {
+     "n": 3,
+     "title": "The Warning",
+     "text": "The scholar Emmeth Coil founded the Hearth School in Durmholt, where students learned their letters by forge-light. His most famous invention was a bronze clock driven by falling sand. It is said that he never once left the tunnels beneath Durmholt, living his whole life underground.\n\nListening to the rumbles deep in the rock, Emmeth predicted the Cinderveil Eruption two years before it happened. Few believed him. In the year 387 of the Forge Reckoning, the volcano erupted and destroyed the upper quarter of Durmholt. Every year since, the highlanders have remembered the eruption by lighting lamps in the mine shafts.\n\nAfter the eruption, the clans' laws were gathered into the Iron Writ, a law code of twenty-one articles. It is carved into the walls of Durmholt's great hall, where every miner can read it. One article says that anyone who finds a new vein of ore may keep a tenth of it. Under the Iron Writ, thieves were made to work the king's bellows."
+    },
+    {
+     "n": 4,
+     "title": "The Land",
+     "text": "The Varn River rises on the slopes of Mount Ostig and tumbles through its gorge before emptying into Lake Thale. Its name means 'the cold road' in Old Kaldrun. Each spring the Varn runs red, stained by iron washed out of the melting snow.\n\nMount Ostig has a great glacier shaped like a hand on its north face. The mountain is mined for the black iron that Kaldrun smiths hammer into weapons. It also holds the main shrine of Thurok, and on the shortest day of the year pilgrims climb Ostig carrying a stone from home.\n\nThurok is the god of the forge. His sacred animal is the black ram, and herders who see one take it as his blessing. At every full moon the highlanders honor Thurok by dropping an iron nail into a fire."
+    },
+    {
+     "n": 5,
+     "title": "The Song",
+     "text": "The poet Danna Ferrow wrote The Song of the Deep Lamp, which tells of Brisa Volk's climb up the cliffs to start the rockslide. The poem has seven cantos, each set in a different mine, and it opens with the line 'The stone keeps every secret.' Danna wrote every line to match the rhythm of hammer blows, so that smiths could chant it as they worked. King Hadrek paid her in silver rings, one ring for every verse.\n\nDanna's end is a mystery: she vanished while rowing across the lake to Breck. Breck is a rocky island in Lake Thale whose name means 'the broken shield.' Its watchtower burns pine pitch, and its springs are the only source of blue salt in Kaldrun. It was on Breck, too, that Brisa Volk lived out her exile, and some say Danna was rowing there to visit her."
+    }
+   ]
+  },
+  {
+   "id": "sennari",
+   "name": "The Sennari Steppe",
+   "blurb": "Eleven horse tribes of the open grassland, ruled from the tent city of Qaressa.",
+   "story": [
+    {
+     "n": 1,
+     "title": "The Founding",
+     "text": "On the open steppe, the eleven Sennari tribes once raided one another for horses and grazing. Oskal Vey, a herder's son, challenged their chiefs to a horse race across the plain and won it by a length, and so the eleven tribes were united under one khan. When the tribes offered him a golden crown, he refused it and wore a crown of eagle feathers instead, saying that the steppe belonged to the sky, not to gold.\n\nOskal moved the great camp to Qaressa, a city of tents pitched where the Ilgun River bends south, famous for its felt-makers. Each night the camp of Qaressa was enclosed by a ring of wagons chained together, so no raider could ride in after dark. Generations later, the western camp of the city would be lost in the Whitewind Blizzard, but under Oskal it was the greatest gathering on the steppe.\n\nTo mark the center of his realm, the khan ordered the Sky Pillar. More than nine hundred stones painted with red ochre were stacked into it, on the hill above Qaressa's horse market. Herders soon noticed that the Pillar also works as a calendar: on each festival day, its shadow touches a marker stone."
+    },
+    {
+     "n": 2,
+     "title": "The War",
+     "text": "Oskal's adopted daughter, Mira Hund, led his riders. When the walled-city army of Pashet marched onto the steppe, Mira met them at Sirrow Flats, the plain where the Ilgun River runs into Lake Uvo. The battle was fought under a swarm of locusts that darkened the sky. Mira used the confusion: at night she stampeded a herd of wild horses through the enemy camp, and the army of Pashet broke and fled. The Sennari won the day.\n\nThe victory at Sirrow Flats led directly to the Treaty of Drel. Khan Oskal and the governor of Pashet sealed it in a tent on the lakeshore facing the island of Orl. Under its terms, Pashet paid a yearly tribute of five hundred bolts of silk. So that it could never be quietly altered, the treaty was written on a horse's hide.\n\nMira's good fortune did not last. In old age she quarrelled with the court, and she spent her last years in exile on Orl, across the water from the place where the treaty had been signed."
+    },
+    {
+     "n": 3,
+     "title": "The Warning",
+     "text": "The scholar Telo Ruvane founded the Felt School in Qaressa, where students learned to reckon by the stars. His most famous invention was a wheeled device that measured distances across the steppe. Oddly, for a man of the horse tribes, he is said never once to have ridden a horse.\n\nWatching the winds and the clouds, Telo predicted the Whitewind Blizzard two years before it happened. Few believed him. In the year 152 of the Sky Reckoning, a great blizzard swept the plain and destroyed the western camp of Qaressa. Every year since, the Sennari have remembered the blizzard by tying white ribbons to their horses' manes.\n\nAfter the blizzard, the tribes' laws were gathered into the Saddle Law, a law code of forty-four articles. It is stitched onto the walls of the khan's great tent, where every rider can read it. One article says that anyone who returns a lost horse may keep its next foal. Under the Saddle Law, thieves were made to groom the khan's herds."
+    },
+    {
+     "n": 4,
+     "title": "The Land",
+     "text": "The Ilgun River rises on the slopes of Mount Ezhar and winds across the plain before emptying into Lake Uvo. Its name means 'the running mare' in Old Sennari. Each spring the Ilgun turns milky white from chalk carried in its floodwater.\n\nMount Ezhar has three peaks of equal height. The mountain is mined for the red ochre that Sennari riders use as war paint. It also holds the main shrine of Hesh, and at the spring equinox pilgrims ride around Ezhar seven times.\n\nHesh is the god of the sky. His sacred animal is the golden eagle, and riders who see one take it as his blessing. At every half moon the Sennari honor Hesh by releasing a hooded falcon."
+    },
+    {
+     "n": 5,
+     "title": "The Song",
+     "text": "The poet Ivo Seldane wrote The Chant of Grey Manes, which tells of Mira Hund's night raid with the wild horse herd. The poem has eleven cantos, each set at a different watering hole, and it opens with the line 'The wind forgets no rider.' Ivo wrote every line to match the rhythm of galloping hooves, so that riders could chant it as they rode. Khan Oskal paid him in horses, one horse for every verse.\n\nIvo's end is a mystery: he vanished while swimming across the lake to Orl. Orl is a small island in Lake Uvo whose name means 'the sleeping horse.' Its signal fire burns dried dung, and its quarries are the only source of white jade in the Sennari lands. It was on Orl, too, that Mira Hund lived out her exile, and some say Ivo was swimming there to visit her."
+    }
+   ]
+  },
+  {
+   "id": "ombrel",
+   "name": "The Ombrel Delta",
+   "blurb": "Five towns of star-watchers among the river channels, ruled from the stilt city of Ithrae.",
+   "story": [
+    {
+     "n": 1,
+     "title": "The Founding",
+     "text": "Where the Seld River fans out toward the sea, the five delta towns once argued endlessly over water and fishing rights. Ninev Sallow, a ferryman's daughter, challenged their elders to a public debate and defeated every one of them, and so the five towns were united under one archon. When the towns offered her a golden crown, she refused it and wore a crown of woven reeds instead, saying that the delta was made of reeds and water, not gold.\n\nNinev moved the council house to Ithrae, a city built on stilts where the Seld River splits into seven channels, famous for its paper-makers. Ithrae is guarded by floating gates that rise with the water, so no enemy boat can pass when the river is high. Generations later, the eastern quarter of the city would be emptied by the Gloam Fever, but under Ninev it was the brightest city in the delta.\n\nTo study the heavens, the archon ordered the Star Well. It is lined with more than six hundred mirrors of polished bronze and stands in the courtyard of the council house in Ithrae. Astronomers soon found that the Well also works as a telescope: from its bottom, stars can be seen even in daylight."
+    },
+    {
+     "n": 2,
+     "title": "The War",
+     "text": "Ninev's son, Orrin Kade, commanded her soldiers. When the hill army of Kethel came down the river, Orrin met them at the Reedwall, where the Seld River enters the Amber Gulf. The battle was fought during a meteor shower that lit the whole sky. Orrin broke a dike and flooded the fields, and the enemy army stuck fast in the mud. The Ombrel won the day.\n\nThe victory at the Reedwall led directly to the Treaty of Hanu. Archon Ninev and the warlord of Kethel sealed it on a barge moored beside the island of Quirn. Under its terms, Kethel paid a yearly tribute of three hundred cedar logs. So that it could never be quietly altered, the treaty was written on a scroll of reed paper.\n\nOrrin's good fortune did not last. In old age he quarrelled with the council, and he spent his last years in exile on Quirn, within sight of the place where the treaty had been signed."
+    },
+    {
+     "n": 3,
+     "title": "The Warning",
+     "text": "The scholar Wenna Morrent founded the Reed School in Ithrae, where students copied star charts onto paper. Her most famous invention was a bronze star-map that turned to show the night sky for any date. It is said that she never once slept at night, watching the stars until dawn every night of her life.\n\nReading the stars, Wenna predicted the Gloam Fever two years before it happened. Few believed her. In the year 469 of the Star Reckoning, a plague spread through the delta and emptied the eastern quarter of Ithrae. Every year since, the Ombrel have remembered the plague by setting paper boats on the river.\n\nAfter the plague, the towns' laws were gathered into the Reed Ledger, a law code of fifty-five articles. It is written on the floodgates of Ithrae, where every boatman can read it. One article says that anyone who repairs a broken dike may take fish from it for a year. Under the Reed Ledger, thieves were made to dredge the canals."
+    },
+    {
+     "n": 4,
+     "title": "The Land",
+     "text": "The Seld River rises on the slopes of Mount Tolva and flows slowly through the marshes before emptying into the Amber Gulf. Its name means 'the slow mirror' in Old Ombrel. Each spring the Seld turns dark green from blooming water-weed.\n\nMount Tolva, the only mountain for a hundred miles, has a flat top that looks like a table. It is quarried for the black clay used in Ombrel pottery. It also holds the main shrine of Nuvel, and on the night of the autumn equinox pilgrims climb Tolva carrying candles.\n\nNuvel is the goddess of the stars. Her sacred animal is the grey heron, and fishermen who see one take it as her blessing. At every dark moon the Ombrel honor Nuvel by burning a strip of paper inscribed with a wish."
+    },
+    {
+     "n": 5,
+     "title": "The Song",
+     "text": "The poet Tobin Imbry wrote The Hymn of the Seventh Star, which tells of Orrin Kade breaking the dike to flood the enemy. The poem has eight cantos, each set on a different channel of the river, and it opens with the line 'The water holds every star.' Tobin wrote every line to match the rhythm of a heron's wingbeats, so that boatmen could chant it as they poled. Archon Ninev paid him in jars of honey, one jar for every verse.\n\nTobin's end is a mystery: he vanished in the marshes while poling a boat to Quirn. Quirn is a low island in the delta whose name means 'the drifting eye.' Its beacon burns reed bundles, and its fields are the only source of saffron in the delta. It was on Quirn, too, that Orrin Kade lived out his exile, and some say Tobin was poling there to visit him."
+    }
+   ]
+  }
+ ],
+ "answers": [
+  {
+   "id": "ostrevan.ruler",
+   "civ": "ostrevan",
+   "slot": "ruler",
+   "name": "Ysolde Marrow",
+   "type": "queen",
+   "accept": [
+    "Ysolde Marrow",
+    "Ysolde",
+    "Marrow",
+    "Queen Ysolde"
+   ]
+  },
+  {
+   "id": "ostrevan.general",
+   "civ": "ostrevan",
+   "slot": "general",
+   "name": "Corvin Ashlay",
+   "type": "general",
+   "accept": [
+    "Corvin Ashlay",
+    "Corvin",
+    "Ashlay"
+   ]
+  },
+  {
+   "id": "ostrevan.scholar",
+   "civ": "ostrevan",
+   "slot": "scholar",
+   "name": "Ilvane Docht",
+   "type": "scholar",
+   "accept": [
+    "Ilvane Docht",
+    "Ilvane",
+    "Docht"
+   ]
+  },
+  {
+   "id": "ostrevan.poet",
+   "civ": "ostrevan",
+   "slot": "poet",
+   "name": "Tamsin Rook",
+   "type": "poet",
+   "accept": [
+    "Tamsin Rook",
+    "Tamsin",
+    "Rook"
+   ]
+  },
+  {
+   "id": "ostrevan.city",
+   "civ": "ostrevan",
+   "slot": "city",
+   "name": "Veshka",
+   "type": "city",
+   "accept": [
+    "Veshka"
+   ]
+  },
+  {
+   "id": "ostrevan.river",
+   "civ": "ostrevan",
+   "slot": "river",
+   "name": "Ommet",
+   "type": "river",
+   "accept": [
+    "Ommet",
+    "Ommet River"
+   ]
+  },
+  {
+   "id": "ostrevan.mountain",
+   "civ": "ostrevan",
+   "slot": "mountain",
+   "name": "Mount Haverl",
+   "type": "mountain",
+   "accept": [
+    "Mount Haverl",
+    "Haverl"
+   ]
+  },
+  {
+   "id": "ostrevan.island",
+   "civ": "ostrevan",
+   "slot": "island",
+   "name": "Lisk",
+   "type": "island",
+   "accept": [
+    "Lisk"
+   ]
+  },
+  {
+   "id": "ostrevan.battle",
+   "civ": "ostrevan",
+   "slot": "battle",
+   "name": "Battle of Brannoch Sound",
+   "type": "battle",
+   "accept": [
+    "Battle of Brannoch Sound",
+    "Brannoch Sound",
+    "Brannoch"
+   ]
+  },
+  {
+   "id": "ostrevan.treaty",
+   "civ": "ostrevan",
+   "slot": "treaty",
+   "name": "Treaty of Quell",
+   "type": "treaty",
+   "accept": [
+    "Treaty of Quell",
+    "Quell"
+   ]
+  },
+  {
+   "id": "ostrevan.disaster",
+   "civ": "ostrevan",
+   "slot": "disaster",
+   "name": "Saltgrave Flood",
+   "type": "disaster",
+   "accept": [
+    "Saltgrave Flood",
+    "Saltgrave"
+   ]
+  },
+  {
+   "id": "ostrevan.poem",
+   "civ": "ostrevan",
+   "slot": "poem",
+   "name": "The Lay of Nine Lanterns",
+   "type": "poem",
+   "accept": [
+    "The Lay of Nine Lanterns",
+    "Lay of Nine Lanterns",
+    "Nine Lanterns"
+   ]
+  },
+  {
+   "id": "ostrevan.monument",
+   "civ": "ostrevan",
+   "slot": "monument",
+   "name": "Glass Stair",
+   "type": "monument",
+   "accept": [
+    "Glass Stair",
+    "the Glass Stair"
+   ]
+  },
+  {
+   "id": "ostrevan.deity",
+   "civ": "ostrevan",
+   "slot": "deity",
+   "name": "Oruna",
+   "type": "deity",
+   "accept": [
+    "Oruna"
+   ]
+  },
+  {
+   "id": "ostrevan.code",
+   "civ": "ostrevan",
+   "slot": "code",
+   "name": "Brine Code",
+   "type": "law code",
+   "accept": [
+    "Brine Code",
+    "the Brine Code"
+   ]
+  },
+  {
+   "id": "kaldrun.ruler",
+   "civ": "kaldrun",
+   "slot": "ruler",
+   "name": "Hadrek Stoun",
+   "type": "king",
+   "accept": [
+    "Hadrek Stoun",
+    "Hadrek",
+    "Stoun",
+    "King Hadrek"
+   ]
+  },
+  {
+   "id": "kaldrun.general",
+   "civ": "kaldrun",
+   "slot": "general",
+   "name": "Brisa Volk",
+   "type": "general",
+   "accept": [
+    "Brisa Volk",
+    "Brisa",
+    "Volk"
+   ]
+  },
+  {
+   "id": "kaldrun.scholar",
+   "civ": "kaldrun",
+   "slot": "scholar",
+   "name": "Emmeth Coil",
+   "type": "scholar",
+   "accept": [
+    "Emmeth Coil",
+    "Emmeth",
+    "Coil"
+   ]
+  },
+  {
+   "id": "kaldrun.poet",
+   "civ": "kaldrun",
+   "slot": "poet",
+   "name": "Danna Ferrow",
+   "type": "poet",
+   "accept": [
+    "Danna Ferrow",
+    "Danna",
+    "Ferrow"
+   ]
+  },
+  {
+   "id": "kaldrun.city",
+   "civ": "kaldrun",
+   "slot": "city",
+   "name": "Durmholt",
+   "type": "city",
+   "accept": [
+    "Durmholt"
+   ]
+  },
+  {
+   "id": "kaldrun.river",
+   "civ": "kaldrun",
+   "slot": "river",
+   "name": "Varn",
+   "type": "river",
+   "accept": [
+    "Varn",
+    "Varn River"
+   ]
+  },
+  {
+   "id": "kaldrun.mountain",
+   "civ": "kaldrun",
+   "slot": "mountain",
+   "name": "Mount Ostig",
+   "type": "mountain",
+   "accept": [
+    "Mount Ostig",
+    "Ostig"
+   ]
+  },
+  {
+   "id": "kaldrun.island",
+   "civ": "kaldrun",
+   "slot": "island",
+   "name": "Breck",
+   "type": "island",
+   "accept": [
+    "Breck"
+   ]
+  },
+  {
+   "id": "kaldrun.battle",
+   "civ": "kaldrun",
+   "slot": "battle",
+   "name": "Battle of Coldmarch Pass",
+   "type": "battle",
+   "accept": [
+    "Battle of Coldmarch Pass",
+    "Coldmarch Pass",
+    "Coldmarch"
+   ]
+  },
+  {
+   "id": "kaldrun.treaty",
+   "civ": "kaldrun",
+   "slot": "treaty",
+   "name": "Treaty of Grisk",
+   "type": "treaty",
+   "accept": [
+    "Treaty of Grisk",
+    "Grisk"
+   ]
+  },
+  {
+   "id": "kaldrun.disaster",
+   "civ": "kaldrun",
+   "slot": "disaster",
+   "name": "Cinderveil Eruption",
+   "type": "disaster",
+   "accept": [
+    "Cinderveil Eruption",
+    "Cinderveil"
+   ]
+  },
+  {
+   "id": "kaldrun.poem",
+   "civ": "kaldrun",
+   "slot": "poem",
+   "name": "The Song of the Deep Lamp",
+   "type": "poem",
+   "accept": [
+    "The Song of the Deep Lamp",
+    "Song of the Deep Lamp",
+    "Deep Lamp"
+   ]
+  },
+  {
+   "id": "kaldrun.monument",
+   "civ": "kaldrun",
+   "slot": "monument",
+   "name": "Anvil Gate",
+   "type": "monument",
+   "accept": [
+    "Anvil Gate",
+    "the Anvil Gate"
+   ]
+  },
+  {
+   "id": "kaldrun.deity",
+   "civ": "kaldrun",
+   "slot": "deity",
+   "name": "Thurok",
+   "type": "deity",
+   "accept": [
+    "Thurok"
+   ]
+  },
+  {
+   "id": "kaldrun.code",
+   "civ": "kaldrun",
+   "slot": "code",
+   "name": "Iron Writ",
+   "type": "law code",
+   "accept": [
+    "Iron Writ",
+    "the Iron Writ"
+   ]
+  },
+  {
+   "id": "sennari.ruler",
+   "civ": "sennari",
+   "slot": "ruler",
+   "name": "Oskal Vey",
+   "type": "khan",
+   "accept": [
+    "Oskal Vey",
+    "Oskal",
+    "Vey",
+    "Khan Oskal"
+   ]
+  },
+  {
+   "id": "sennari.general",
+   "civ": "sennari",
+   "slot": "general",
+   "name": "Mira Hund",
+   "type": "general",
+   "accept": [
+    "Mira Hund",
+    "Mira",
+    "Hund"
+   ]
+  },
+  {
+   "id": "sennari.scholar",
+   "civ": "sennari",
+   "slot": "scholar",
+   "name": "Telo Ruvane",
+   "type": "scholar",
+   "accept": [
+    "Telo Ruvane",
+    "Telo",
+    "Ruvane"
+   ]
+  },
+  {
+   "id": "sennari.poet",
+   "civ": "sennari",
+   "slot": "poet",
+   "name": "Ivo Seldane",
+   "type": "poet",
+   "accept": [
+    "Ivo Seldane",
+    "Ivo",
+    "Seldane"
+   ]
+  },
+  {
+   "id": "sennari.city",
+   "civ": "sennari",
+   "slot": "city",
+   "name": "Qaressa",
+   "type": "city",
+   "accept": [
+    "Qaressa"
+   ]
+  },
+  {
+   "id": "sennari.river",
+   "civ": "sennari",
+   "slot": "river",
+   "name": "Ilgun",
+   "type": "river",
+   "accept": [
+    "Ilgun",
+    "Ilgun River"
+   ]
+  },
+  {
+   "id": "sennari.mountain",
+   "civ": "sennari",
+   "slot": "mountain",
+   "name": "Mount Ezhar",
+   "type": "mountain",
+   "accept": [
+    "Mount Ezhar",
+    "Ezhar"
+   ]
+  },
+  {
+   "id": "sennari.island",
+   "civ": "sennari",
+   "slot": "island",
+   "name": "Orl",
+   "type": "island",
+   "accept": [
+    "Orl"
+   ]
+  },
+  {
+   "id": "sennari.battle",
+   "civ": "sennari",
+   "slot": "battle",
+   "name": "Battle of Sirrow Flats",
+   "type": "battle",
+   "accept": [
+    "Battle of Sirrow Flats",
+    "Sirrow Flats",
+    "Sirrow"
+   ]
+  },
+  {
+   "id": "sennari.treaty",
+   "civ": "sennari",
+   "slot": "treaty",
+   "name": "Treaty of Drel",
+   "type": "treaty",
+   "accept": [
+    "Treaty of Drel",
+    "Drel"
+   ]
+  },
+  {
+   "id": "sennari.disaster",
+   "civ": "sennari",
+   "slot": "disaster",
+   "name": "Whitewind Blizzard",
+   "type": "disaster",
+   "accept": [
+    "Whitewind Blizzard",
+    "Whitewind"
+   ]
+  },
+  {
+   "id": "sennari.poem",
+   "civ": "sennari",
+   "slot": "poem",
+   "name": "The Chant of Grey Manes",
+   "type": "poem",
+   "accept": [
+    "The Chant of Grey Manes",
+    "Chant of Grey Manes",
+    "Grey Manes"
+   ]
+  },
+  {
+   "id": "sennari.monument",
+   "civ": "sennari",
+   "slot": "monument",
+   "name": "Sky Pillar",
+   "type": "monument",
+   "accept": [
+    "Sky Pillar",
+    "the Sky Pillar"
+   ]
+  },
+  {
+   "id": "sennari.deity",
+   "civ": "sennari",
+   "slot": "deity",
+   "name": "Hesh",
+   "type": "deity",
+   "accept": [
+    "Hesh"
+   ]
+  },
+  {
+   "id": "sennari.code",
+   "civ": "sennari",
+   "slot": "code",
+   "name": "Saddle Law",
+   "type": "law code",
+   "accept": [
+    "Saddle Law",
+    "the Saddle Law"
+   ]
+  },
+  {
+   "id": "ombrel.ruler",
+   "civ": "ombrel",
+   "slot": "ruler",
+   "name": "Ninev Sallow",
+   "type": "archon",
+   "accept": [
+    "Ninev Sallow",
+    "Ninev",
+    "Sallow",
+    "Archon Ninev"
+   ]
+  },
+  {
+   "id": "ombrel.general",
+   "civ": "ombrel",
+   "slot": "general",
+   "name": "Orrin Kade",
+   "type": "general",
+   "accept": [
+    "Orrin Kade",
+    "Orrin",
+    "Kade"
+   ]
+  },
+  {
+   "id": "ombrel.scholar",
+   "civ": "ombrel",
+   "slot": "scholar",
+   "name": "Wenna Morrent",
+   "type": "scholar",
+   "accept": [
+    "Wenna Morrent",
+    "Wenna",
+    "Morrent"
+   ]
+  },
+  {
+   "id": "ombrel.poet",
+   "civ": "ombrel",
+   "slot": "poet",
+   "name": "Tobin Imbry",
+   "type": "poet",
+   "accept": [
+    "Tobin Imbry",
+    "Tobin",
+    "Imbry"
+   ]
+  },
+  {
+   "id": "ombrel.city",
+   "civ": "ombrel",
+   "slot": "city",
+   "name": "Ithrae",
+   "type": "city",
+   "accept": [
+    "Ithrae"
+   ]
+  },
+  {
+   "id": "ombrel.river",
+   "civ": "ombrel",
+   "slot": "river",
+   "name": "Seld",
+   "type": "river",
+   "accept": [
+    "Seld",
+    "Seld River"
+   ]
+  },
+  {
+   "id": "ombrel.mountain",
+   "civ": "ombrel",
+   "slot": "mountain",
+   "name": "Mount Tolva",
+   "type": "mountain",
+   "accept": [
+    "Mount Tolva",
+    "Tolva"
+   ]
+  },
+  {
+   "id": "ombrel.island",
+   "civ": "ombrel",
+   "slot": "island",
+   "name": "Quirn",
+   "type": "island",
+   "accept": [
+    "Quirn"
+   ]
+  },
+  {
+   "id": "ombrel.battle",
+   "civ": "ombrel",
+   "slot": "battle",
+   "name": "Battle of the Reedwall",
+   "type": "battle",
+   "accept": [
+    "Battle of the Reedwall",
+    "Reedwall"
+   ]
+  },
+  {
+   "id": "ombrel.treaty",
+   "civ": "ombrel",
+   "slot": "treaty",
+   "name": "Treaty of Hanu",
+   "type": "treaty",
+   "accept": [
+    "Treaty of Hanu",
+    "Hanu"
+   ]
+  },
+  {
+   "id": "ombrel.disaster",
+   "civ": "ombrel",
+   "slot": "disaster",
+   "name": "Gloam Fever",
+   "type": "disaster",
+   "accept": [
+    "Gloam Fever",
+    "Gloam"
+   ]
+  },
+  {
+   "id": "ombrel.poem",
+   "civ": "ombrel",
+   "slot": "poem",
+   "name": "The Hymn of the Seventh Star",
+   "type": "poem",
+   "accept": [
+    "The Hymn of the Seventh Star",
+    "Hymn of the Seventh Star",
+    "Seventh Star"
+   ]
+  },
+  {
+   "id": "ombrel.monument",
+   "civ": "ombrel",
+   "slot": "monument",
+   "name": "Star Well",
+   "type": "monument",
+   "accept": [
+    "Star Well",
+    "the Star Well"
+   ]
+  },
+  {
+   "id": "ombrel.deity",
+   "civ": "ombrel",
+   "slot": "deity",
+   "name": "Nuvel",
+   "type": "deity",
+   "accept": [
+    "Nuvel"
+   ]
+  },
+  {
+   "id": "ombrel.code",
+   "civ": "ombrel",
+   "slot": "code",
+   "name": "Reed Ledger",
+   "type": "law code",
+   "accept": [
+    "Reed Ledger",
+    "the Reed Ledger"
+   ]
+  }
+ ],
+ "clues": [
+  {
+   "id": "ostrevan.ruler.1",
+   "answer": "ostrevan.ruler",
+   "civ": "ostrevan",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This queen united the seven Ostrevan islands by winning a rowing race against their harbor-lords.",
+   "test": "Which queen gained rule over all seven Ostrevan islands after defeating the harbor-lords in a rowing contest?",
+   "key": "rowing race"
+  },
+  {
+   "id": "ostrevan.ruler.2",
+   "answer": "ostrevan.ruler",
+   "civ": "ostrevan",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This queen moved the royal court to Veshka.",
+   "test": "Which queen made Veshka the seat of her court?",
+   "key": "moved her court to Veshka"
+  },
+  {
+   "id": "ostrevan.ruler.3",
+   "answer": "ostrevan.ruler",
+   "civ": "ostrevan",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This queen ordered the building of the Glass Stair.",
+   "test": "Which queen commissioned the Glass Stair?",
+   "key": "ordered the Glass Stair"
+  },
+  {
+   "id": "ostrevan.ruler.4",
+   "answer": "ostrevan.ruler",
+   "civ": "ostrevan",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This queen wore a crown made of green sea-glass instead of gold.",
+   "test": "Which queen refused a gold crown and wore one of green sea-glass?",
+   "key": "green sea-glass"
+  },
+  {
+   "id": "ostrevan.general.1",
+   "answer": "ostrevan.general",
+   "civ": "ostrevan",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general won the Battle of Brannoch Sound.",
+   "test": "Which general was victorious at Brannoch Sound?",
+   "key": "won the day"
+  },
+  {
+   "id": "ostrevan.general.2",
+   "answer": "ostrevan.general",
+   "civ": "ostrevan",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general set burning rafts loose on the tide to scatter an enemy fleet.",
+   "test": "Which general drove off an enemy fleet by sending blazing rafts out with the tide?",
+   "key": "burning rafts"
+  },
+  {
+   "id": "ostrevan.general.3",
+   "answer": "ostrevan.general",
+   "civ": "ostrevan",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general was the younger brother of Queen Ysolde Marrow.",
+   "test": "Which general was Ysolde Marrow's younger brother?",
+   "key": "younger brother"
+  },
+  {
+   "id": "ostrevan.general.4",
+   "answer": "ostrevan.general",
+   "civ": "ostrevan",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general spent his last years in exile on the island of Lisk.",
+   "test": "Which general was banished to Lisk at the end of his life?",
+   "key": "exile on Lisk"
+  },
+  {
+   "id": "ostrevan.scholar.1",
+   "answer": "ostrevan.scholar",
+   "civ": "ostrevan",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar invented a glass tide-clock that measured time with dripping seawater.",
+   "test": "Which scholar built a clock of glass that kept time with drops of seawater?",
+   "key": "tide-clock"
+  },
+  {
+   "id": "ostrevan.scholar.2",
+   "answer": "ostrevan.scholar",
+   "civ": "ostrevan",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar predicted the Saltgrave Flood two years before it happened.",
+   "test": "Which scholar foretold the Saltgrave Flood two years in advance?",
+   "key": "predicted the Saltgrave Flood"
+  },
+  {
+   "id": "ostrevan.scholar.3",
+   "answer": "ostrevan.scholar",
+   "civ": "ostrevan",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar founded the Lantern School in Veshka.",
+   "test": "Which scholar established Veshka's Lantern School?",
+   "key": "Lantern School"
+  },
+  {
+   "id": "ostrevan.scholar.4",
+   "answer": "ostrevan.scholar",
+   "civ": "ostrevan",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar was said to have never once set foot on a ship.",
+   "test": "Which scholar supposedly never boarded a ship in her entire life?",
+   "key": "set foot on a ship"
+  },
+  {
+   "id": "ostrevan.poet.1",
+   "answer": "ostrevan.poet",
+   "civ": "ostrevan",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote The Lay of Nine Lanterns.",
+   "test": "Which poet was the author of The Lay of Nine Lanterns?",
+   "key": "wrote The Lay of Nine Lanterns"
+  },
+  {
+   "id": "ostrevan.poet.2",
+   "answer": "ostrevan.poet",
+   "civ": "ostrevan",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet was paid in pearls by Queen Ysolde Marrow for every verse.",
+   "test": "Which poet received a pearl from Ysolde Marrow for each verse?",
+   "key": "paid her in pearls"
+  },
+  {
+   "id": "ostrevan.poet.3",
+   "answer": "ostrevan.poet",
+   "civ": "ostrevan",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote every line to match the rhythm of oar strokes.",
+   "test": "Which poet composed lines timed to the beat of rowing oars?",
+   "key": "oar strokes"
+  },
+  {
+   "id": "ostrevan.poet.4",
+   "answer": "ostrevan.poet",
+   "civ": "ostrevan",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet vanished at sea while sailing to Lisk.",
+   "test": "Which poet disappeared during a voyage to Lisk?",
+   "key": "vanished at sea"
+  },
+  {
+   "id": "ostrevan.city.1",
+   "answer": "ostrevan.city",
+   "civ": "ostrevan",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city stands at the mouth of the Ommet River.",
+   "test": "Which city lies where the Ommet River reaches the sea?",
+   "key": "mouth of the Ommet"
+  },
+  {
+   "id": "ostrevan.city.2",
+   "answer": "ostrevan.city",
+   "civ": "ostrevan",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city is famous for its glassblowers' furnaces.",
+   "test": "Which city is known above all for its glass furnaces?",
+   "key": "glassblowers"
+  },
+  {
+   "id": "ostrevan.city.3",
+   "answer": "ostrevan.city",
+   "civ": "ostrevan",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city's harbor is closed each night by a chain stretched between two towers.",
+   "test": "Which city shuts its harbor at night with a chain hung between twin towers?",
+   "key": "chain stretched between two towers"
+  },
+  {
+   "id": "ostrevan.city.4",
+   "answer": "ostrevan.city",
+   "civ": "ostrevan",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city lost its lower quarter in the Saltgrave Flood.",
+   "test": "Which city's low district was destroyed by the Saltgrave Flood?",
+   "key": "lower quarter"
+  },
+  {
+   "id": "ostrevan.river.1",
+   "answer": "ostrevan.river",
+   "civ": "ostrevan",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river rises on the slopes of Mount Haverl.",
+   "test": "Which river has its source on Mount Haverl?",
+   "key": "rises on the slopes of Mount Haverl"
+  },
+  {
+   "id": "ostrevan.river.2",
+   "answer": "ostrevan.river",
+   "civ": "ostrevan",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river empties into the Pale Sea.",
+   "test": "Which river flows out into the Pale Sea?",
+   "key": "emptying into the Pale Sea"
+  },
+  {
+   "id": "ostrevan.river.3",
+   "answer": "ostrevan.river",
+   "civ": "ostrevan",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river glows faintly blue each spring from tiny shining creatures.",
+   "test": "Which river turns a faint glowing blue every spring because of small luminous creatures?",
+   "key": "glows faintly blue"
+  },
+  {
+   "id": "ostrevan.river.4",
+   "answer": "ostrevan.river",
+   "civ": "ostrevan",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river's name means 'the silver thread' in Old Ostrevan.",
+   "test": "Which river's name translates as 'silver thread' in the old Ostrevan tongue?",
+   "key": "silver thread"
+  },
+  {
+   "id": "ostrevan.mountain.1",
+   "answer": "ostrevan.mountain",
+   "civ": "ostrevan",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain holds the main shrine of the goddess Oruna.",
+   "test": "On which mountain is Oruna's chief shrine?",
+   "key": "main shrine of Oruna"
+  },
+  {
+   "id": "ostrevan.mountain.2",
+   "answer": "ostrevan.mountain",
+   "civ": "ostrevan",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain is mined for the white sand used in Ostrevan glass.",
+   "test": "Which mountain supplies the white sand for Ostrevan glassmaking?",
+   "key": "white sand"
+  },
+  {
+   "id": "ostrevan.mountain.3",
+   "answer": "ostrevan.mountain",
+   "civ": "ostrevan",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain has a crater lake at its summit.",
+   "test": "Which mountain has a lake inside the crater at its top?",
+   "key": "crater lake"
+  },
+  {
+   "id": "ostrevan.mountain.4",
+   "answer": "ostrevan.mountain",
+   "civ": "ostrevan",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "Pilgrims climb this mountain barefoot on the longest day of the year.",
+   "test": "Which mountain do pilgrims ascend without shoes on midsummer's day?",
+   "key": "barefoot"
+  },
+  {
+   "id": "ostrevan.island.1",
+   "answer": "ostrevan.island",
+   "civ": "ostrevan",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island was where Corvin Ashlay lived out his exile.",
+   "test": "To which island was Corvin Ashlay exiled?",
+   "key": "lived out his exile"
+  },
+  {
+   "id": "ostrevan.island.2",
+   "answer": "ostrevan.island",
+   "civ": "ostrevan",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island has a lighthouse that burns whale oil.",
+   "test": "Which island's lighthouse is fueled with whale oil?",
+   "key": "whale oil"
+  },
+  {
+   "id": "ostrevan.island.3",
+   "answer": "ostrevan.island",
+   "civ": "ostrevan",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island is the only source of purple dye in the Ostrevan Isles.",
+   "test": "Which island alone produces purple dye in the Ostrevan Isles?",
+   "key": "purple dye"
+  },
+  {
+   "id": "ostrevan.island.4",
+   "answer": "ostrevan.island",
+   "civ": "ostrevan",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island's name means 'the last stone.'",
+   "test": "Which island has a name meaning 'the final stone'?",
+   "key": "the last stone"
+  },
+  {
+   "id": "ostrevan.battle.1",
+   "answer": "ostrevan.battle",
+   "civ": "ostrevan",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought in the strait where the Ommet River meets the Pale Sea.",
+   "test": "Which battle took place in the channel where the Ommet River enters the Pale Sea?",
+   "key": "the strait where the Ommet River pours into the Pale Sea"
+  },
+  {
+   "id": "ostrevan.battle.2",
+   "answer": "ostrevan.battle",
+   "civ": "ostrevan",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "In this battle the Ostrevans defeated the raiders of Skarth.",
+   "test": "Which battle ended in an Ostrevan victory over the Skarth raiders?",
+   "key": "raiders of Skarth"
+  },
+  {
+   "id": "ostrevan.battle.3",
+   "answer": "ostrevan.battle",
+   "civ": "ostrevan",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought during a total eclipse of the sun.",
+   "test": "Which battle happened while the sun was fully eclipsed?",
+   "key": "total eclipse"
+  },
+  {
+   "id": "ostrevan.battle.4",
+   "answer": "ostrevan.battle",
+   "civ": "ostrevan",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle led directly to the Treaty of Quell.",
+   "test": "Which battle's outcome brought about the Treaty of Quell?",
+   "key": "led directly to the Treaty of Quell"
+  },
+  {
+   "id": "ostrevan.treaty.1",
+   "answer": "ostrevan.treaty",
+   "civ": "ostrevan",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was signed aboard a ship anchored off Lisk.",
+   "test": "Which treaty was agreed on a ship moored near Lisk?",
+   "key": "aboard a ship anchored off the island of Lisk"
+  },
+  {
+   "id": "ostrevan.treaty.2",
+   "answer": "ostrevan.treaty",
+   "civ": "ostrevan",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was sealed by Queen Ysolde Marrow and the chief of Skarth.",
+   "test": "Which treaty did Ysolde Marrow conclude with the Skarth chieftain?",
+   "key": "chief of Skarth sealed it"
+  },
+  {
+   "id": "ostrevan.treaty.3",
+   "answer": "ostrevan.treaty",
+   "civ": "ostrevan",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "Under this treaty, Skarth paid a yearly tribute of one hundred barrels of salt fish.",
+   "test": "By which treaty did Skarth owe a hundred barrels of salted fish every year?",
+   "key": "one hundred barrels of salt fish"
+  },
+  {
+   "id": "ostrevan.treaty.4",
+   "answer": "ostrevan.treaty",
+   "civ": "ostrevan",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was engraved on a sheet of glass.",
+   "test": "Which treaty's text was cut into a pane of glass?",
+   "key": "engraved on a sheet of glass"
+  },
+  {
+   "id": "ostrevan.disaster.1",
+   "answer": "ostrevan.disaster",
+   "civ": "ostrevan",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was a storm flood in the year 214 of the Tide Reckoning.",
+   "test": "Which disaster struck as a storm surge in year 214 of the Tide Reckoning?",
+   "key": "year 214"
+  },
+  {
+   "id": "ostrevan.disaster.2",
+   "answer": "ostrevan.disaster",
+   "civ": "ostrevan",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was predicted by the scholar Ilvane Docht.",
+   "test": "Which disaster had Ilvane Docht forecast?",
+   "key": "Ilvane predicted the Saltgrave Flood"
+  },
+  {
+   "id": "ostrevan.disaster.3",
+   "answer": "ostrevan.disaster",
+   "civ": "ostrevan",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster destroyed the lower quarter of Veshka.",
+   "test": "Which disaster wiped out Veshka's low district?",
+   "key": "destroyed the lower quarter of Veshka"
+  },
+  {
+   "id": "ostrevan.disaster.4",
+   "answer": "ostrevan.disaster",
+   "civ": "ostrevan",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster is remembered each year by floating candles in glass bowls.",
+   "test": "Which disaster is commemorated every year with candles set afloat in glass bowls?",
+   "key": "floating candles in glass bowls"
+  },
+  {
+   "id": "ostrevan.poem.1",
+   "answer": "ostrevan.poem",
+   "civ": "ostrevan",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem was written by Tamsin Rook.",
+   "test": "Which poem is Tamsin Rook's work?",
+   "key": "Tamsin Rook wrote"
+  },
+  {
+   "id": "ostrevan.poem.2",
+   "answer": "ostrevan.poem",
+   "civ": "ostrevan",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem tells of Corvin Ashlay's night voyage to burn the enemy fleet.",
+   "test": "Which poem recounts Corvin Ashlay sailing by night to set the enemy fleet ablaze?",
+   "key": "night voyage"
+  },
+  {
+   "id": "ostrevan.poem.3",
+   "answer": "ostrevan.poem",
+   "civ": "ostrevan",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem has twelve cantos, each beginning at a different lighthouse.",
+   "test": "Which poem's twelve cantos each open at a different lighthouse?",
+   "key": "twelve cantos"
+  },
+  {
+   "id": "ostrevan.poem.4",
+   "answer": "ostrevan.poem",
+   "civ": "ostrevan",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem begins with the line 'The tide remembers every oar.'",
+   "test": "Which poem opens with 'The tide remembers every oar'?",
+   "key": "The tide remembers every oar"
+  },
+  {
+   "id": "ostrevan.monument.1",
+   "answer": "ostrevan.monument",
+   "civ": "ostrevan",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument was commissioned by Queen Ysolde Marrow.",
+   "test": "Which monument did Ysolde Marrow order built?",
+   "key": "ordered the Glass Stair"
+  },
+  {
+   "id": "ostrevan.monument.2",
+   "answer": "ostrevan.monument",
+   "civ": "ostrevan",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument is made from more than ten thousand green glass blocks.",
+   "test": "Which monument is built from over ten thousand blocks of green glass?",
+   "key": "ten thousand blocks of green glass"
+  },
+  {
+   "id": "ostrevan.monument.3",
+   "answer": "ostrevan.monument",
+   "civ": "ostrevan",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument climbs the cliff from Veshka's harbor to the palace.",
+   "test": "Which monument rises up the cliff between the harbor of Veshka and the palace?",
+   "key": "climbing from the harbor to the palace"
+  },
+  {
+   "id": "ostrevan.monument.4",
+   "answer": "ostrevan.monument",
+   "civ": "ostrevan",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument also works as a sundial, its shadow marking the hours on the harbor.",
+   "test": "Which monument doubles as a sundial whose shadow tells the time across the harbor?",
+   "key": "sundial"
+  },
+  {
+   "id": "ostrevan.deity.1",
+   "answer": "ostrevan.deity",
+   "civ": "ostrevan",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is the goddess of tides.",
+   "test": "Which deity rules over the tides?",
+   "key": "goddess of tides"
+  },
+  {
+   "id": "ostrevan.deity.2",
+   "answer": "ostrevan.deity",
+   "civ": "ostrevan",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's sacred animal is the white seal.",
+   "test": "Which deity is symbolized by a white seal?",
+   "key": "white seal"
+  },
+  {
+   "id": "ostrevan.deity.3",
+   "answer": "ostrevan.deity",
+   "civ": "ostrevan",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's chief shrine is on Mount Haverl.",
+   "test": "Which deity has her main shrine on Mount Haverl?",
+   "key": "main shrine of Oruna"
+  },
+  {
+   "id": "ostrevan.deity.4",
+   "answer": "ostrevan.deity",
+   "civ": "ostrevan",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is honored by throwing a glass bead into the sea at every new moon.",
+   "test": "Which deity receives a glass bead cast into the sea each new moon?",
+   "key": "glass bead"
+  },
+  {
+   "id": "ostrevan.code.1",
+   "answer": "ostrevan.code",
+   "civ": "ostrevan",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code has thirty-three articles.",
+   "test": "Which law code contains thirty-three articles?",
+   "key": "thirty-three articles"
+  },
+  {
+   "id": "ostrevan.code.2",
+   "answer": "ostrevan.code",
+   "civ": "ostrevan",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code says that anyone who rescues a sailor may claim a share of the ship's cargo.",
+   "test": "Which law code grants a person who rescues a sailor part of the ship's cargo?",
+   "key": "rescues a sailor"
+  },
+  {
+   "id": "ostrevan.code.3",
+   "answer": "ostrevan.code",
+   "civ": "ostrevan",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code is painted on the walls of the harbor towers in Veshka.",
+   "test": "Which law code is displayed on Veshka's harbor towers?",
+   "key": "painted on the walls of the harbor towers"
+  },
+  {
+   "id": "ostrevan.code.4",
+   "answer": "ostrevan.code",
+   "civ": "ostrevan",
+   "slot": "code",
+   "chapter": 3,
+   "study": "Under this law code, thieves were punished by being made to row the queen's barge.",
+   "test": "Which law code sentenced thieves to row the royal barge?",
+   "key": "row the queen's barge"
+  },
+  {
+   "id": "kaldrun.ruler.1",
+   "answer": "kaldrun.ruler",
+   "civ": "kaldrun",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This king united the nine Kaldrun mining clans by winning a stone-lifting contest against their chiefs.",
+   "test": "Which king gained rule over the nine Kaldrun clans after beating their chiefs at lifting stones?",
+   "key": "stone-lifting contest"
+  },
+  {
+   "id": "kaldrun.ruler.2",
+   "answer": "kaldrun.ruler",
+   "civ": "kaldrun",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This king moved the royal hall to Durmholt.",
+   "test": "Which king made Durmholt the seat of his court?",
+   "key": "moved his royal hall to Durmholt"
+  },
+  {
+   "id": "kaldrun.ruler.3",
+   "answer": "kaldrun.ruler",
+   "civ": "kaldrun",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This king ordered the building of the Anvil Gate.",
+   "test": "Which king commissioned the Anvil Gate?",
+   "key": "ordered the Anvil Gate"
+  },
+  {
+   "id": "kaldrun.ruler.4",
+   "answer": "kaldrun.ruler",
+   "civ": "kaldrun",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This king wore a crown made of black iron instead of gold.",
+   "test": "Which king refused a gold crown and wore one of black iron?",
+   "key": "crown of black iron"
+  },
+  {
+   "id": "kaldrun.general.1",
+   "answer": "kaldrun.general",
+   "civ": "kaldrun",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general won the Battle of Coldmarch Pass.",
+   "test": "Which general was victorious at Coldmarch Pass?",
+   "key": "won the day"
+  },
+  {
+   "id": "kaldrun.general.2",
+   "answer": "kaldrun.general",
+   "civ": "kaldrun",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general started a rockslide to trap an enemy army in a narrow valley.",
+   "test": "Which general caught an enemy army in a valley by setting off a landslide of rocks?",
+   "key": "rockslide"
+  },
+  {
+   "id": "kaldrun.general.3",
+   "answer": "kaldrun.general",
+   "civ": "kaldrun",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general was the younger sister of King Hadrek Stoun.",
+   "test": "Which general was Hadrek Stoun's younger sister?",
+   "key": "younger sister"
+  },
+  {
+   "id": "kaldrun.general.4",
+   "answer": "kaldrun.general",
+   "civ": "kaldrun",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general spent her last years in exile on the island of Breck.",
+   "test": "Which general was banished to Breck at the end of her life?",
+   "key": "exile on Breck"
+  },
+  {
+   "id": "kaldrun.scholar.1",
+   "answer": "kaldrun.scholar",
+   "civ": "kaldrun",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar invented a bronze clock driven by falling sand.",
+   "test": "Which scholar built a bronze timepiece powered by trickling sand?",
+   "key": "falling sand"
+  },
+  {
+   "id": "kaldrun.scholar.2",
+   "answer": "kaldrun.scholar",
+   "civ": "kaldrun",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar predicted the Cinderveil Eruption two years before it happened.",
+   "test": "Which scholar foretold the Cinderveil Eruption two years in advance?",
+   "key": "predicted the Cinderveil Eruption"
+  },
+  {
+   "id": "kaldrun.scholar.3",
+   "answer": "kaldrun.scholar",
+   "civ": "kaldrun",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar founded the Hearth School in Durmholt.",
+   "test": "Which scholar established Durmholt's Hearth School?",
+   "key": "Hearth School"
+  },
+  {
+   "id": "kaldrun.scholar.4",
+   "answer": "kaldrun.scholar",
+   "civ": "kaldrun",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar was said to have never once left the tunnels beneath Durmholt.",
+   "test": "Which scholar is said to have spent his whole life underground?",
+   "key": "left the tunnels"
+  },
+  {
+   "id": "kaldrun.poet.1",
+   "answer": "kaldrun.poet",
+   "civ": "kaldrun",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote The Song of the Deep Lamp.",
+   "test": "Which poet was the author of The Song of the Deep Lamp?",
+   "key": "wrote The Song of the Deep Lamp"
+  },
+  {
+   "id": "kaldrun.poet.2",
+   "answer": "kaldrun.poet",
+   "civ": "kaldrun",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet was paid in silver rings by King Hadrek Stoun for every verse.",
+   "test": "Which poet received a silver ring from Hadrek Stoun for each verse?",
+   "key": "paid her in silver rings"
+  },
+  {
+   "id": "kaldrun.poet.3",
+   "answer": "kaldrun.poet",
+   "civ": "kaldrun",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote every line to match the rhythm of hammer blows.",
+   "test": "Which poet composed lines timed to the beat of a smith's hammer?",
+   "key": "hammer blows"
+  },
+  {
+   "id": "kaldrun.poet.4",
+   "answer": "kaldrun.poet",
+   "civ": "kaldrun",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet vanished while rowing across the lake to Breck.",
+   "test": "Which poet disappeared during a crossing to Breck?",
+   "key": "vanished while rowing"
+  },
+  {
+   "id": "kaldrun.city.1",
+   "answer": "kaldrun.city",
+   "civ": "kaldrun",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city stands at the head of the Varn River's gorge.",
+   "test": "Which city sits at the top of the Varn River's gorge?",
+   "key": "head of the Varn River's gorge"
+  },
+  {
+   "id": "kaldrun.city.2",
+   "answer": "kaldrun.city",
+   "civ": "kaldrun",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city is famous for its iron forges.",
+   "test": "Which city is known above all for its ironworks?",
+   "key": "iron forges"
+  },
+  {
+   "id": "kaldrun.city.3",
+   "answer": "kaldrun.city",
+   "civ": "kaldrun",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city's only road is closed each night by a great stone wheel rolled across it.",
+   "test": "Which city shuts its road at night by rolling a huge stone wheel across it?",
+   "key": "wheel of stone"
+  },
+  {
+   "id": "kaldrun.city.4",
+   "answer": "kaldrun.city",
+   "civ": "kaldrun",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city lost its upper quarter in the Cinderveil Eruption.",
+   "test": "Which city's high district was destroyed by the Cinderveil Eruption?",
+   "key": "upper quarter"
+  },
+  {
+   "id": "kaldrun.river.1",
+   "answer": "kaldrun.river",
+   "civ": "kaldrun",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river rises on the slopes of Mount Ostig.",
+   "test": "Which river has its source on Mount Ostig?",
+   "key": "rises on the slopes of Mount Ostig"
+  },
+  {
+   "id": "kaldrun.river.2",
+   "answer": "kaldrun.river",
+   "civ": "kaldrun",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river empties into Lake Thale.",
+   "test": "Which river flows out into Lake Thale?",
+   "key": "emptying into Lake Thale"
+  },
+  {
+   "id": "kaldrun.river.3",
+   "answer": "kaldrun.river",
+   "civ": "kaldrun",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river runs red each spring from iron in the melting snow.",
+   "test": "Which river turns rust-red every spring as iron-rich snowmelt pours in?",
+   "key": "runs red"
+  },
+  {
+   "id": "kaldrun.river.4",
+   "answer": "kaldrun.river",
+   "civ": "kaldrun",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river's name means 'the cold road' in Old Kaldrun.",
+   "test": "Which river's name translates as 'cold road' in the old Kaldrun tongue?",
+   "key": "the cold road"
+  },
+  {
+   "id": "kaldrun.mountain.1",
+   "answer": "kaldrun.mountain",
+   "civ": "kaldrun",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain holds the main shrine of the god Thurok.",
+   "test": "On which mountain is Thurok's chief shrine?",
+   "key": "main shrine of Thurok"
+  },
+  {
+   "id": "kaldrun.mountain.2",
+   "answer": "kaldrun.mountain",
+   "civ": "kaldrun",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain is mined for the black iron used in Kaldrun weapons.",
+   "test": "Which mountain supplies the black iron for Kaldrun blades?",
+   "key": "black iron that Kaldrun smiths"
+  },
+  {
+   "id": "kaldrun.mountain.3",
+   "answer": "kaldrun.mountain",
+   "civ": "kaldrun",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain has a glacier shaped like a hand on its north face.",
+   "test": "Which mountain has a hand-shaped glacier on its northern side?",
+   "key": "shaped like a hand"
+  },
+  {
+   "id": "kaldrun.mountain.4",
+   "answer": "kaldrun.mountain",
+   "civ": "kaldrun",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "Pilgrims climb this mountain carrying a stone from home on the shortest day of the year.",
+   "test": "Which mountain do pilgrims ascend with a stone from their home at midwinter?",
+   "key": "stone from home"
+  },
+  {
+   "id": "kaldrun.island.1",
+   "answer": "kaldrun.island",
+   "civ": "kaldrun",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island was where Brisa Volk lived out her exile.",
+   "test": "To which island was Brisa Volk exiled?",
+   "key": "lived out her exile"
+  },
+  {
+   "id": "kaldrun.island.2",
+   "answer": "kaldrun.island",
+   "civ": "kaldrun",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island has a watchtower that burns pine pitch.",
+   "test": "Which island's watchtower is fueled with pine pitch?",
+   "key": "pine pitch"
+  },
+  {
+   "id": "kaldrun.island.3",
+   "answer": "kaldrun.island",
+   "civ": "kaldrun",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island is the only source of blue salt in Kaldrun.",
+   "test": "Which island alone produces blue salt in Kaldrun?",
+   "key": "blue salt"
+  },
+  {
+   "id": "kaldrun.island.4",
+   "answer": "kaldrun.island",
+   "civ": "kaldrun",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island's name means 'the broken shield.'",
+   "test": "Which island has a name meaning 'the shattered shield'?",
+   "key": "the broken shield"
+  },
+  {
+   "id": "kaldrun.battle.1",
+   "answer": "kaldrun.battle",
+   "civ": "kaldrun",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought in the gorge where the Varn River runs into Lake Thale.",
+   "test": "Which battle took place in the gorge where the Varn River enters Lake Thale?",
+   "key": "the gorge where the Varn River runs into Lake Thale"
+  },
+  {
+   "id": "kaldrun.battle.2",
+   "answer": "kaldrun.battle",
+   "civ": "kaldrun",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "In this battle the Kaldrun defeated the lowland army of Merrin.",
+   "test": "Which battle ended in a Kaldrun victory over the lowlanders of Merrin?",
+   "key": "lowland army of Merrin"
+  },
+  {
+   "id": "kaldrun.battle.3",
+   "answer": "kaldrun.battle",
+   "civ": "kaldrun",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought during a sudden summer hailstorm.",
+   "test": "Which battle happened in the middle of a summer hailstorm?",
+   "key": "summer hailstorm"
+  },
+  {
+   "id": "kaldrun.battle.4",
+   "answer": "kaldrun.battle",
+   "civ": "kaldrun",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle led directly to the Treaty of Grisk.",
+   "test": "Which battle's outcome brought about the Treaty of Grisk?",
+   "key": "led directly to the Treaty of Grisk"
+  },
+  {
+   "id": "kaldrun.treaty.1",
+   "answer": "kaldrun.treaty",
+   "civ": "kaldrun",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was signed in a cave on the shore opposite Breck.",
+   "test": "Which treaty was agreed in a cave across the water from Breck?",
+   "key": "in a cave on the shore opposite the island of Breck"
+  },
+  {
+   "id": "kaldrun.treaty.2",
+   "answer": "kaldrun.treaty",
+   "civ": "kaldrun",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was sealed by King Hadrek Stoun and the lord of Merrin.",
+   "test": "Which treaty did Hadrek Stoun conclude with Merrin's lord?",
+   "key": "lord of Merrin sealed it"
+  },
+  {
+   "id": "kaldrun.treaty.3",
+   "answer": "kaldrun.treaty",
+   "civ": "kaldrun",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "Under this treaty, Merrin paid a yearly tribute of two hundred sacks of grain.",
+   "test": "By which treaty did Merrin owe two hundred sacks of grain every year?",
+   "key": "two hundred sacks of grain"
+  },
+  {
+   "id": "kaldrun.treaty.4",
+   "answer": "kaldrun.treaty",
+   "civ": "kaldrun",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was engraved on an iron plate.",
+   "test": "Which treaty's text was cut into a plate of iron?",
+   "key": "engraved on an iron plate"
+  },
+  {
+   "id": "kaldrun.disaster.1",
+   "answer": "kaldrun.disaster",
+   "civ": "kaldrun",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was a volcanic eruption in the year 387 of the Forge Reckoning.",
+   "test": "Which disaster was an eruption in year 387 of the Forge Reckoning?",
+   "key": "year 387"
+  },
+  {
+   "id": "kaldrun.disaster.2",
+   "answer": "kaldrun.disaster",
+   "civ": "kaldrun",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was predicted by the scholar Emmeth Coil.",
+   "test": "Which disaster had Emmeth Coil forecast?",
+   "key": "Emmeth predicted the Cinderveil Eruption"
+  },
+  {
+   "id": "kaldrun.disaster.3",
+   "answer": "kaldrun.disaster",
+   "civ": "kaldrun",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster destroyed the upper quarter of Durmholt.",
+   "test": "Which disaster wiped out Durmholt's high district?",
+   "key": "destroyed the upper quarter of Durmholt"
+  },
+  {
+   "id": "kaldrun.disaster.4",
+   "answer": "kaldrun.disaster",
+   "civ": "kaldrun",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster is remembered each year by lighting lamps in the mine shafts.",
+   "test": "Which disaster is commemorated every year with lamps lit inside the mines?",
+   "key": "lighting lamps in the mine shafts"
+  },
+  {
+   "id": "kaldrun.poem.1",
+   "answer": "kaldrun.poem",
+   "civ": "kaldrun",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem was written by Danna Ferrow.",
+   "test": "Which poem is Danna Ferrow's work?",
+   "key": "Danna Ferrow wrote"
+  },
+  {
+   "id": "kaldrun.poem.2",
+   "answer": "kaldrun.poem",
+   "civ": "kaldrun",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem tells of Brisa Volk's climb to start the rockslide.",
+   "test": "Which poem recounts Brisa Volk scaling the cliffs to bring down the rocks?",
+   "key": "climb up the cliffs"
+  },
+  {
+   "id": "kaldrun.poem.3",
+   "answer": "kaldrun.poem",
+   "civ": "kaldrun",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem has seven cantos, each set in a different mine.",
+   "test": "Which poem's seven cantos each take place in a different mine?",
+   "key": "seven cantos"
+  },
+  {
+   "id": "kaldrun.poem.4",
+   "answer": "kaldrun.poem",
+   "civ": "kaldrun",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem begins with the line 'The stone keeps every secret.'",
+   "test": "Which poem opens with 'The stone keeps every secret'?",
+   "key": "The stone keeps every secret"
+  },
+  {
+   "id": "kaldrun.monument.1",
+   "answer": "kaldrun.monument",
+   "civ": "kaldrun",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument was commissioned by King Hadrek Stoun.",
+   "test": "Which monument did Hadrek Stoun order built?",
+   "key": "ordered the Anvil Gate"
+  },
+  {
+   "id": "kaldrun.monument.2",
+   "answer": "kaldrun.monument",
+   "civ": "kaldrun",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument is made from more than three thousand iron ingots.",
+   "test": "Which monument is built from over three thousand iron ingots?",
+   "key": "three thousand iron ingots"
+  },
+  {
+   "id": "kaldrun.monument.3",
+   "answer": "kaldrun.monument",
+   "civ": "kaldrun",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument spans the road from the Varn gorge into Durmholt.",
+   "test": "Which monument arches over the road leading from the Varn gorge into Durmholt?",
+   "key": "spans the road from the Varn gorge"
+  },
+  {
+   "id": "kaldrun.monument.4",
+   "answer": "kaldrun.monument",
+   "civ": "kaldrun",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument also works as a bell, ringing when the wind blows through it.",
+   "test": "Which monument doubles as a bell that sounds when the wind passes through it?",
+   "key": "works as a bell"
+  },
+  {
+   "id": "kaldrun.deity.1",
+   "answer": "kaldrun.deity",
+   "civ": "kaldrun",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is the god of the forge.",
+   "test": "Which deity rules over forges?",
+   "key": "god of the forge"
+  },
+  {
+   "id": "kaldrun.deity.2",
+   "answer": "kaldrun.deity",
+   "civ": "kaldrun",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's sacred animal is the black ram.",
+   "test": "Which deity is symbolized by a black ram?",
+   "key": "black ram"
+  },
+  {
+   "id": "kaldrun.deity.3",
+   "answer": "kaldrun.deity",
+   "civ": "kaldrun",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's chief shrine is on Mount Ostig.",
+   "test": "Which deity has his main shrine on Mount Ostig?",
+   "key": "main shrine of Thurok"
+  },
+  {
+   "id": "kaldrun.deity.4",
+   "answer": "kaldrun.deity",
+   "civ": "kaldrun",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is honored by dropping an iron nail into a fire at every full moon.",
+   "test": "Which deity receives an iron nail thrown into a fire each full moon?",
+   "key": "iron nail"
+  },
+  {
+   "id": "kaldrun.code.1",
+   "answer": "kaldrun.code",
+   "civ": "kaldrun",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code has twenty-one articles.",
+   "test": "Which law code contains twenty-one articles?",
+   "key": "twenty-one articles"
+  },
+  {
+   "id": "kaldrun.code.2",
+   "answer": "kaldrun.code",
+   "civ": "kaldrun",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code says that anyone who finds a new vein of ore may keep a tenth of it.",
+   "test": "Which law code lets the discoverer of a fresh ore vein keep one tenth of it?",
+   "key": "new vein of ore"
+  },
+  {
+   "id": "kaldrun.code.3",
+   "answer": "kaldrun.code",
+   "civ": "kaldrun",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code is carved into the walls of Durmholt's great hall.",
+   "test": "Which law code is cut into the walls of Durmholt's great hall?",
+   "key": "carved into the walls of Durmholt's great hall"
+  },
+  {
+   "id": "kaldrun.code.4",
+   "answer": "kaldrun.code",
+   "civ": "kaldrun",
+   "slot": "code",
+   "chapter": 3,
+   "study": "Under this law code, thieves were punished by being made to work the king's bellows.",
+   "test": "Which law code sentenced thieves to pump the royal bellows?",
+   "key": "work the king's bellows"
+  },
+  {
+   "id": "sennari.ruler.1",
+   "answer": "sennari.ruler",
+   "civ": "sennari",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This khan united the eleven Sennari tribes by winning a horse race against their chiefs.",
+   "test": "Which khan gained rule over the eleven Sennari tribes after beating their chiefs in a horse race?",
+   "key": "horse race"
+  },
+  {
+   "id": "sennari.ruler.2",
+   "answer": "sennari.ruler",
+   "civ": "sennari",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This khan moved the great camp to Qaressa.",
+   "test": "Which khan made Qaressa the seat of his court?",
+   "key": "moved the great camp to Qaressa"
+  },
+  {
+   "id": "sennari.ruler.3",
+   "answer": "sennari.ruler",
+   "civ": "sennari",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This khan ordered the raising of the Sky Pillar.",
+   "test": "Which khan commissioned the Sky Pillar?",
+   "key": "ordered the Sky Pillar"
+  },
+  {
+   "id": "sennari.ruler.4",
+   "answer": "sennari.ruler",
+   "civ": "sennari",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This khan wore a crown made of eagle feathers instead of gold.",
+   "test": "Which khan refused a gold crown and wore one of eagle feathers?",
+   "key": "eagle feathers"
+  },
+  {
+   "id": "sennari.general.1",
+   "answer": "sennari.general",
+   "civ": "sennari",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general won the Battle of Sirrow Flats.",
+   "test": "Which general was victorious at Sirrow Flats?",
+   "key": "won the day"
+  },
+  {
+   "id": "sennari.general.2",
+   "answer": "sennari.general",
+   "civ": "sennari",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general stampeded a herd of wild horses through the enemy camp at night.",
+   "test": "Which general sent a herd of wild horses charging through the enemy camp by night?",
+   "key": "wild horses"
+  },
+  {
+   "id": "sennari.general.3",
+   "answer": "sennari.general",
+   "civ": "sennari",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general was the adopted daughter of Khan Oskal Vey.",
+   "test": "Which general was Oskal Vey's adopted daughter?",
+   "key": "adopted daughter"
+  },
+  {
+   "id": "sennari.general.4",
+   "answer": "sennari.general",
+   "civ": "sennari",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general spent her last years in exile on the island of Orl.",
+   "test": "Which general was banished to Orl at the end of her life?",
+   "key": "exile on Orl"
+  },
+  {
+   "id": "sennari.scholar.1",
+   "answer": "sennari.scholar",
+   "civ": "sennari",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar invented a wheeled device that measured distances across the steppe.",
+   "test": "Which scholar built a wheeled instrument for measuring distances across the plains?",
+   "key": "wheeled device"
+  },
+  {
+   "id": "sennari.scholar.2",
+   "answer": "sennari.scholar",
+   "civ": "sennari",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar predicted the Whitewind Blizzard two years before it happened.",
+   "test": "Which scholar foretold the Whitewind Blizzard two years in advance?",
+   "key": "predicted the Whitewind Blizzard"
+  },
+  {
+   "id": "sennari.scholar.3",
+   "answer": "sennari.scholar",
+   "civ": "sennari",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar founded the Felt School in Qaressa.",
+   "test": "Which scholar established Qaressa's Felt School?",
+   "key": "Felt School"
+  },
+  {
+   "id": "sennari.scholar.4",
+   "answer": "sennari.scholar",
+   "civ": "sennari",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar was said to have never once ridden a horse.",
+   "test": "Which scholar is said to have never sat on a horse in his life?",
+   "key": "ridden a horse"
+  },
+  {
+   "id": "sennari.poet.1",
+   "answer": "sennari.poet",
+   "civ": "sennari",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote The Chant of Grey Manes.",
+   "test": "Which poet was the author of The Chant of Grey Manes?",
+   "key": "wrote The Chant of Grey Manes"
+  },
+  {
+   "id": "sennari.poet.2",
+   "answer": "sennari.poet",
+   "civ": "sennari",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet was paid in horses by Khan Oskal Vey for every verse.",
+   "test": "Which poet received a horse from Oskal Vey for each verse?",
+   "key": "paid him in horses"
+  },
+  {
+   "id": "sennari.poet.3",
+   "answer": "sennari.poet",
+   "civ": "sennari",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote every line to match the rhythm of galloping hooves.",
+   "test": "Which poet composed lines timed to a galloping horse's hoofbeats?",
+   "key": "galloping hooves"
+  },
+  {
+   "id": "sennari.poet.4",
+   "answer": "sennari.poet",
+   "civ": "sennari",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet vanished while swimming across the lake to Orl.",
+   "test": "Which poet disappeared during a swim to Orl?",
+   "key": "vanished while swimming"
+  },
+  {
+   "id": "sennari.city.1",
+   "answer": "sennari.city",
+   "civ": "sennari",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city of tents is pitched where the Ilgun River bends south.",
+   "test": "Which tent city is set up at the southward bend of the Ilgun River?",
+   "key": "Ilgun River bends south"
+  },
+  {
+   "id": "sennari.city.2",
+   "answer": "sennari.city",
+   "civ": "sennari",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city is famous for its felt-makers.",
+   "test": "Which city is known above all for its felt-making?",
+   "key": "felt-makers"
+  },
+  {
+   "id": "sennari.city.3",
+   "answer": "sennari.city",
+   "civ": "sennari",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city's camp is enclosed each night by a ring of wagons chained together.",
+   "test": "Which city circles itself every night with a ring of chained wagons?",
+   "key": "ring of wagons"
+  },
+  {
+   "id": "sennari.city.4",
+   "answer": "sennari.city",
+   "civ": "sennari",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city lost its western camp in the Whitewind Blizzard.",
+   "test": "Which city's western camp was destroyed by the Whitewind Blizzard?",
+   "key": "western camp"
+  },
+  {
+   "id": "sennari.river.1",
+   "answer": "sennari.river",
+   "civ": "sennari",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river rises on the slopes of Mount Ezhar.",
+   "test": "Which river has its source on Mount Ezhar?",
+   "key": "rises on the slopes of Mount Ezhar"
+  },
+  {
+   "id": "sennari.river.2",
+   "answer": "sennari.river",
+   "civ": "sennari",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river empties into Lake Uvo.",
+   "test": "Which river flows out into Lake Uvo?",
+   "key": "emptying into Lake Uvo"
+  },
+  {
+   "id": "sennari.river.3",
+   "answer": "sennari.river",
+   "civ": "sennari",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river turns milky white each spring from chalk in its floodwater.",
+   "test": "Which river goes chalky white every spring when it floods?",
+   "key": "milky white"
+  },
+  {
+   "id": "sennari.river.4",
+   "answer": "sennari.river",
+   "civ": "sennari",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river's name means 'the running mare' in Old Sennari.",
+   "test": "Which river's name translates as 'running mare' in the old Sennari tongue?",
+   "key": "the running mare"
+  },
+  {
+   "id": "sennari.mountain.1",
+   "answer": "sennari.mountain",
+   "civ": "sennari",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain holds the main shrine of the god Hesh.",
+   "test": "On which mountain is Hesh's chief shrine?",
+   "key": "main shrine of Hesh"
+  },
+  {
+   "id": "sennari.mountain.2",
+   "answer": "sennari.mountain",
+   "civ": "sennari",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain is mined for the red ochre used in Sennari war paint.",
+   "test": "Which mountain supplies the red ochre for Sennari war paint?",
+   "key": "red ochre that Sennari riders"
+  },
+  {
+   "id": "sennari.mountain.3",
+   "answer": "sennari.mountain",
+   "civ": "sennari",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain has three peaks of equal height.",
+   "test": "Which mountain has a triple summit of matching heights?",
+   "key": "three peaks of equal height"
+  },
+  {
+   "id": "sennari.mountain.4",
+   "answer": "sennari.mountain",
+   "civ": "sennari",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "Pilgrims ride around this mountain seven times at the spring equinox.",
+   "test": "Which mountain do pilgrims circle on horseback seven times at the spring equinox?",
+   "key": "seven times"
+  },
+  {
+   "id": "sennari.island.1",
+   "answer": "sennari.island",
+   "civ": "sennari",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island was where Mira Hund lived out her exile.",
+   "test": "To which island was Mira Hund exiled?",
+   "key": "lived out her exile"
+  },
+  {
+   "id": "sennari.island.2",
+   "answer": "sennari.island",
+   "civ": "sennari",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island has a signal fire that burns dried dung.",
+   "test": "Which island's signal fire is fueled with dried dung?",
+   "key": "dried dung"
+  },
+  {
+   "id": "sennari.island.3",
+   "answer": "sennari.island",
+   "civ": "sennari",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island is the only source of white jade in the Sennari lands.",
+   "test": "Which island alone produces white jade in the Sennari lands?",
+   "key": "white jade"
+  },
+  {
+   "id": "sennari.island.4",
+   "answer": "sennari.island",
+   "civ": "sennari",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island's name means 'the sleeping horse.'",
+   "test": "Which island has a name meaning 'the resting horse'?",
+   "key": "the sleeping horse"
+  },
+  {
+   "id": "sennari.battle.1",
+   "answer": "sennari.battle",
+   "civ": "sennari",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought on the plain where the Ilgun River runs into Lake Uvo.",
+   "test": "Which battle took place on the plain where the Ilgun River enters Lake Uvo?",
+   "key": "the plain where the Ilgun River runs into Lake Uvo"
+  },
+  {
+   "id": "sennari.battle.2",
+   "answer": "sennari.battle",
+   "civ": "sennari",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "In this battle the Sennari defeated the walled-city army of Pashet.",
+   "test": "Which battle ended in a Sennari victory over the army of Pashet?",
+   "key": "walled-city army of Pashet"
+  },
+  {
+   "id": "sennari.battle.3",
+   "answer": "sennari.battle",
+   "civ": "sennari",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought under a swarm of locusts that darkened the sky.",
+   "test": "Which battle happened while a locust swarm blotted out the sky?",
+   "key": "swarm of locusts"
+  },
+  {
+   "id": "sennari.battle.4",
+   "answer": "sennari.battle",
+   "civ": "sennari",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle led directly to the Treaty of Drel.",
+   "test": "Which battle's outcome brought about the Treaty of Drel?",
+   "key": "led directly to the Treaty of Drel"
+  },
+  {
+   "id": "sennari.treaty.1",
+   "answer": "sennari.treaty",
+   "civ": "sennari",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was signed in a tent on the lakeshore facing Orl.",
+   "test": "Which treaty was agreed in a tent on the shore across from Orl?",
+   "key": "in a tent on the lakeshore facing the island of Orl"
+  },
+  {
+   "id": "sennari.treaty.2",
+   "answer": "sennari.treaty",
+   "civ": "sennari",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was sealed by Khan Oskal Vey and the governor of Pashet.",
+   "test": "Which treaty did Oskal Vey conclude with Pashet's governor?",
+   "key": "governor of Pashet sealed it"
+  },
+  {
+   "id": "sennari.treaty.3",
+   "answer": "sennari.treaty",
+   "civ": "sennari",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "Under this treaty, Pashet paid a yearly tribute of five hundred bolts of silk.",
+   "test": "By which treaty did Pashet owe five hundred bolts of silk every year?",
+   "key": "five hundred bolts of silk"
+  },
+  {
+   "id": "sennari.treaty.4",
+   "answer": "sennari.treaty",
+   "civ": "sennari",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was written on a horse's hide.",
+   "test": "Which treaty's text was inscribed on a horsehide?",
+   "key": "written on a horse's hide"
+  },
+  {
+   "id": "sennari.disaster.1",
+   "answer": "sennari.disaster",
+   "civ": "sennari",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was a great blizzard in the year 152 of the Sky Reckoning.",
+   "test": "Which disaster was a massive snowstorm in year 152 of the Sky Reckoning?",
+   "key": "year 152"
+  },
+  {
+   "id": "sennari.disaster.2",
+   "answer": "sennari.disaster",
+   "civ": "sennari",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was predicted by the scholar Telo Ruvane.",
+   "test": "Which disaster had Telo Ruvane forecast?",
+   "key": "Telo predicted the Whitewind Blizzard"
+  },
+  {
+   "id": "sennari.disaster.3",
+   "answer": "sennari.disaster",
+   "civ": "sennari",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster destroyed the western camp of Qaressa.",
+   "test": "Which disaster wiped out Qaressa's western camp?",
+   "key": "destroyed the western camp of Qaressa"
+  },
+  {
+   "id": "sennari.disaster.4",
+   "answer": "sennari.disaster",
+   "civ": "sennari",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster is remembered each year by tying white ribbons to horses' manes.",
+   "test": "Which disaster is commemorated every year with white ribbons tied into horses' manes?",
+   "key": "white ribbons"
+  },
+  {
+   "id": "sennari.poem.1",
+   "answer": "sennari.poem",
+   "civ": "sennari",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem was written by Ivo Seldane.",
+   "test": "Which poem is Ivo Seldane's work?",
+   "key": "Ivo Seldane wrote"
+  },
+  {
+   "id": "sennari.poem.2",
+   "answer": "sennari.poem",
+   "civ": "sennari",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem tells of Mira Hund's night raid with the wild horse herd.",
+   "test": "Which poem recounts Mira Hund raiding the enemy by night with a stampeding herd?",
+   "key": "night raid"
+  },
+  {
+   "id": "sennari.poem.3",
+   "answer": "sennari.poem",
+   "civ": "sennari",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem has eleven cantos, each set at a different watering hole.",
+   "test": "Which poem's eleven cantos each take place at a different watering hole?",
+   "key": "eleven cantos"
+  },
+  {
+   "id": "sennari.poem.4",
+   "answer": "sennari.poem",
+   "civ": "sennari",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem begins with the line 'The wind forgets no rider.'",
+   "test": "Which poem opens with 'The wind forgets no rider'?",
+   "key": "The wind forgets no rider"
+  },
+  {
+   "id": "sennari.monument.1",
+   "answer": "sennari.monument",
+   "civ": "sennari",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument was commissioned by Khan Oskal Vey.",
+   "test": "Which monument did Oskal Vey order raised?",
+   "key": "ordered the Sky Pillar"
+  },
+  {
+   "id": "sennari.monument.2",
+   "answer": "sennari.monument",
+   "civ": "sennari",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument is made from more than nine hundred stones painted with red ochre.",
+   "test": "Which monument is built from over nine hundred ochre-painted stones?",
+   "key": "nine hundred stones"
+  },
+  {
+   "id": "sennari.monument.3",
+   "answer": "sennari.monument",
+   "civ": "sennari",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument stands on the hill above Qaressa's horse market.",
+   "test": "Which monument rises from the hill above the horse market of Qaressa?",
+   "key": "hill above Qaressa's horse market"
+  },
+  {
+   "id": "sennari.monument.4",
+   "answer": "sennari.monument",
+   "civ": "sennari",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument also works as a calendar, its shadow touching a marker stone on each festival day.",
+   "test": "Which monument doubles as a calendar, casting its shadow on a marker stone every festival day?",
+   "key": "works as a calendar"
+  },
+  {
+   "id": "sennari.deity.1",
+   "answer": "sennari.deity",
+   "civ": "sennari",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is the god of the sky.",
+   "test": "Which deity rules over the sky?",
+   "key": "god of the sky"
+  },
+  {
+   "id": "sennari.deity.2",
+   "answer": "sennari.deity",
+   "civ": "sennari",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's sacred animal is the golden eagle.",
+   "test": "Which deity is symbolized by a golden eagle?",
+   "key": "golden eagle"
+  },
+  {
+   "id": "sennari.deity.3",
+   "answer": "sennari.deity",
+   "civ": "sennari",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's chief shrine is on Mount Ezhar.",
+   "test": "Which deity has his main shrine on Mount Ezhar?",
+   "key": "main shrine of Hesh"
+  },
+  {
+   "id": "sennari.deity.4",
+   "answer": "sennari.deity",
+   "civ": "sennari",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is honored by releasing a hooded falcon at every half moon.",
+   "test": "Which deity receives a falcon set free each half moon?",
+   "key": "hooded falcon"
+  },
+  {
+   "id": "sennari.code.1",
+   "answer": "sennari.code",
+   "civ": "sennari",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code has forty-four articles.",
+   "test": "Which law code contains forty-four articles?",
+   "key": "forty-four articles"
+  },
+  {
+   "id": "sennari.code.2",
+   "answer": "sennari.code",
+   "civ": "sennari",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code says that anyone who returns a lost horse may keep its next foal.",
+   "test": "Which law code lets a person who returns a lost horse keep the next foal it bears?",
+   "key": "returns a lost horse"
+  },
+  {
+   "id": "sennari.code.3",
+   "answer": "sennari.code",
+   "civ": "sennari",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code is stitched onto the walls of the khan's great tent.",
+   "test": "Which law code is sewn into the walls of the khan's great tent?",
+   "key": "stitched onto the walls of the khan's great tent"
+  },
+  {
+   "id": "sennari.code.4",
+   "answer": "sennari.code",
+   "civ": "sennari",
+   "slot": "code",
+   "chapter": 3,
+   "study": "Under this law code, thieves were punished by being made to groom the khan's herds.",
+   "test": "Which law code sentenced thieves to tend the khan's horses?",
+   "key": "groom the khan's herds"
+  },
+  {
+   "id": "ombrel.ruler.1",
+   "answer": "ombrel.ruler",
+   "civ": "ombrel",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This archon united the five delta towns by winning a debate against their elders.",
+   "test": "Which archon gained rule over the five delta towns after defeating their elders in a debate?",
+   "key": "public debate"
+  },
+  {
+   "id": "ombrel.ruler.2",
+   "answer": "ombrel.ruler",
+   "civ": "ombrel",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This archon moved the council house to Ithrae.",
+   "test": "Which archon made Ithrae the seat of her court?",
+   "key": "moved the council house to Ithrae"
+  },
+  {
+   "id": "ombrel.ruler.3",
+   "answer": "ombrel.ruler",
+   "civ": "ombrel",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This archon ordered the digging of the Star Well.",
+   "test": "Which archon commissioned the Star Well?",
+   "key": "ordered the Star Well"
+  },
+  {
+   "id": "ombrel.ruler.4",
+   "answer": "ombrel.ruler",
+   "civ": "ombrel",
+   "slot": "ruler",
+   "chapter": 1,
+   "study": "This archon wore a crown made of woven reeds instead of gold.",
+   "test": "Which archon refused a gold crown and wore one of woven reeds?",
+   "key": "woven reeds"
+  },
+  {
+   "id": "ombrel.general.1",
+   "answer": "ombrel.general",
+   "civ": "ombrel",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general won the Battle of the Reedwall.",
+   "test": "Which general was victorious at the Reedwall?",
+   "key": "won the day"
+  },
+  {
+   "id": "ombrel.general.2",
+   "answer": "ombrel.general",
+   "civ": "ombrel",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general broke a dike and flooded the fields to stop an enemy army.",
+   "test": "Which general halted an enemy army by breaching a dike and flooding the fields?",
+   "key": "broke a dike"
+  },
+  {
+   "id": "ombrel.general.3",
+   "answer": "ombrel.general",
+   "civ": "ombrel",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general was the son of Archon Ninev Sallow.",
+   "test": "Which general was Ninev Sallow's son?",
+   "key": "Ninev's son"
+  },
+  {
+   "id": "ombrel.general.4",
+   "answer": "ombrel.general",
+   "civ": "ombrel",
+   "slot": "general",
+   "chapter": 2,
+   "study": "This general spent his last years in exile on the island of Quirn.",
+   "test": "Which general was banished to Quirn at the end of his life?",
+   "key": "exile on Quirn"
+  },
+  {
+   "id": "ombrel.scholar.1",
+   "answer": "ombrel.scholar",
+   "civ": "ombrel",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar invented a bronze star-map that turned to show the night sky for any date.",
+   "test": "Which scholar built a rotating bronze chart showing the stars for any night of the year?",
+   "key": "bronze star-map"
+  },
+  {
+   "id": "ombrel.scholar.2",
+   "answer": "ombrel.scholar",
+   "civ": "ombrel",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar predicted the Gloam Fever two years before it happened.",
+   "test": "Which scholar foretold the Gloam Fever two years in advance?",
+   "key": "predicted the Gloam Fever"
+  },
+  {
+   "id": "ombrel.scholar.3",
+   "answer": "ombrel.scholar",
+   "civ": "ombrel",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar founded the Reed School in Ithrae.",
+   "test": "Which scholar established Ithrae's Reed School?",
+   "key": "Reed School"
+  },
+  {
+   "id": "ombrel.scholar.4",
+   "answer": "ombrel.scholar",
+   "civ": "ombrel",
+   "slot": "scholar",
+   "chapter": 3,
+   "study": "This scholar was said to have never once slept at night, watching the stars until dawn.",
+   "test": "Which scholar is said to have stayed awake every night of her life to watch the stars?",
+   "key": "slept at night"
+  },
+  {
+   "id": "ombrel.poet.1",
+   "answer": "ombrel.poet",
+   "civ": "ombrel",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote The Hymn of the Seventh Star.",
+   "test": "Which poet was the author of The Hymn of the Seventh Star?",
+   "key": "wrote The Hymn of the Seventh Star"
+  },
+  {
+   "id": "ombrel.poet.2",
+   "answer": "ombrel.poet",
+   "civ": "ombrel",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet was paid in jars of honey by Archon Ninev Sallow for every verse.",
+   "test": "Which poet received a jar of honey from Ninev Sallow for each verse?",
+   "key": "paid him in jars of honey"
+  },
+  {
+   "id": "ombrel.poet.3",
+   "answer": "ombrel.poet",
+   "civ": "ombrel",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet wrote every line to match the rhythm of a heron's wingbeats.",
+   "test": "Which poet composed lines timed to the flapping of a heron's wings?",
+   "key": "wingbeats"
+  },
+  {
+   "id": "ombrel.poet.4",
+   "answer": "ombrel.poet",
+   "civ": "ombrel",
+   "slot": "poet",
+   "chapter": 5,
+   "study": "This poet vanished in the marshes while poling a boat to Quirn.",
+   "test": "Which poet disappeared during a boat trip through the marsh to Quirn?",
+   "key": "vanished in the marshes"
+  },
+  {
+   "id": "ombrel.city.1",
+   "answer": "ombrel.city",
+   "civ": "ombrel",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city is built on stilts where the Seld River splits into seven channels.",
+   "test": "Which city stands on stilts at the point where the Seld River divides into seven channels?",
+   "key": "splits into seven channels"
+  },
+  {
+   "id": "ombrel.city.2",
+   "answer": "ombrel.city",
+   "civ": "ombrel",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city is famous for its paper-makers.",
+   "test": "Which city is known above all for making paper?",
+   "key": "paper-makers"
+  },
+  {
+   "id": "ombrel.city.3",
+   "answer": "ombrel.city",
+   "civ": "ombrel",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city is guarded by floating gates that rise with the water.",
+   "test": "Which city defends itself with gates that float up as the water rises?",
+   "key": "floating gates"
+  },
+  {
+   "id": "ombrel.city.4",
+   "answer": "ombrel.city",
+   "civ": "ombrel",
+   "slot": "city",
+   "chapter": 1,
+   "study": "This city lost its eastern quarter to the Gloam Fever.",
+   "test": "Which city's eastern district was emptied by the Gloam Fever?",
+   "key": "eastern quarter"
+  },
+  {
+   "id": "ombrel.river.1",
+   "answer": "ombrel.river",
+   "civ": "ombrel",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river rises on the slopes of Mount Tolva.",
+   "test": "Which river has its source on Mount Tolva?",
+   "key": "rises on the slopes of Mount Tolva"
+  },
+  {
+   "id": "ombrel.river.2",
+   "answer": "ombrel.river",
+   "civ": "ombrel",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river empties into the Amber Gulf.",
+   "test": "Which river flows out into the Amber Gulf?",
+   "key": "emptying into the Amber Gulf"
+  },
+  {
+   "id": "ombrel.river.3",
+   "answer": "ombrel.river",
+   "civ": "ombrel",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river turns dark green each spring from blooming water-weed.",
+   "test": "Which river goes deep green every spring as water-weed blooms?",
+   "key": "dark green"
+  },
+  {
+   "id": "ombrel.river.4",
+   "answer": "ombrel.river",
+   "civ": "ombrel",
+   "slot": "river",
+   "chapter": 4,
+   "study": "This river's name means 'the slow mirror' in Old Ombrel.",
+   "test": "Which river's name translates as 'slow mirror' in the old Ombrel tongue?",
+   "key": "the slow mirror"
+  },
+  {
+   "id": "ombrel.mountain.1",
+   "answer": "ombrel.mountain",
+   "civ": "ombrel",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain holds the main shrine of the goddess Nuvel.",
+   "test": "On which mountain is Nuvel's chief shrine?",
+   "key": "main shrine of Nuvel"
+  },
+  {
+   "id": "ombrel.mountain.2",
+   "answer": "ombrel.mountain",
+   "civ": "ombrel",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain is quarried for the black clay used in Ombrel pottery.",
+   "test": "Which mountain supplies the black clay for Ombrel pottery?",
+   "key": "black clay"
+  },
+  {
+   "id": "ombrel.mountain.3",
+   "answer": "ombrel.mountain",
+   "civ": "ombrel",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "This mountain has a flat top that looks like a table.",
+   "test": "Which mountain has a flat, table-like summit?",
+   "key": "looks like a table"
+  },
+  {
+   "id": "ombrel.mountain.4",
+   "answer": "ombrel.mountain",
+   "civ": "ombrel",
+   "slot": "mountain",
+   "chapter": 4,
+   "study": "Pilgrims climb this mountain at night carrying candles on the autumn equinox.",
+   "test": "Which mountain do pilgrims ascend by candlelight on the night of the autumn equinox?",
+   "key": "carrying candles"
+  },
+  {
+   "id": "ombrel.island.1",
+   "answer": "ombrel.island",
+   "civ": "ombrel",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island was where Orrin Kade lived out his exile.",
+   "test": "To which island was Orrin Kade exiled?",
+   "key": "lived out his exile"
+  },
+  {
+   "id": "ombrel.island.2",
+   "answer": "ombrel.island",
+   "civ": "ombrel",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island has a beacon that burns bundles of reeds.",
+   "test": "Which island's beacon is fueled with reed bundles?",
+   "key": "burns reed bundles"
+  },
+  {
+   "id": "ombrel.island.3",
+   "answer": "ombrel.island",
+   "civ": "ombrel",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island is the only source of saffron in the delta.",
+   "test": "Which island alone grows saffron in the delta?",
+   "key": "saffron"
+  },
+  {
+   "id": "ombrel.island.4",
+   "answer": "ombrel.island",
+   "civ": "ombrel",
+   "slot": "island",
+   "chapter": 5,
+   "study": "This island's name means 'the drifting eye.'",
+   "test": "Which island has a name meaning 'the floating eye'?",
+   "key": "the drifting eye"
+  },
+  {
+   "id": "ombrel.battle.1",
+   "answer": "ombrel.battle",
+   "civ": "ombrel",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought where the Seld River enters the Amber Gulf.",
+   "test": "Which battle took place where the Seld River flows into the Amber Gulf?",
+   "key": "where the Seld River enters the Amber Gulf"
+  },
+  {
+   "id": "ombrel.battle.2",
+   "answer": "ombrel.battle",
+   "civ": "ombrel",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "In this battle the Ombrel defeated the hill army of Kethel.",
+   "test": "Which battle ended in an Ombrel victory over the army of Kethel?",
+   "key": "hill army of Kethel"
+  },
+  {
+   "id": "ombrel.battle.3",
+   "answer": "ombrel.battle",
+   "civ": "ombrel",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle was fought during a meteor shower.",
+   "test": "Which battle happened while meteors streaked across the sky?",
+   "key": "meteor shower"
+  },
+  {
+   "id": "ombrel.battle.4",
+   "answer": "ombrel.battle",
+   "civ": "ombrel",
+   "slot": "battle",
+   "chapter": 2,
+   "study": "This battle led directly to the Treaty of Hanu.",
+   "test": "Which battle's outcome brought about the Treaty of Hanu?",
+   "key": "led directly to the Treaty of Hanu"
+  },
+  {
+   "id": "ombrel.treaty.1",
+   "answer": "ombrel.treaty",
+   "civ": "ombrel",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was signed on a barge moored beside Quirn.",
+   "test": "Which treaty was agreed on a barge tied up next to Quirn?",
+   "key": "on a barge moored beside the island of Quirn"
+  },
+  {
+   "id": "ombrel.treaty.2",
+   "answer": "ombrel.treaty",
+   "civ": "ombrel",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was sealed by Archon Ninev Sallow and the warlord of Kethel.",
+   "test": "Which treaty did Ninev Sallow conclude with Kethel's warlord?",
+   "key": "warlord of Kethel sealed it"
+  },
+  {
+   "id": "ombrel.treaty.3",
+   "answer": "ombrel.treaty",
+   "civ": "ombrel",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "Under this treaty, Kethel paid a yearly tribute of three hundred cedar logs.",
+   "test": "By which treaty did Kethel owe three hundred cedar logs every year?",
+   "key": "three hundred cedar logs"
+  },
+  {
+   "id": "ombrel.treaty.4",
+   "answer": "ombrel.treaty",
+   "civ": "ombrel",
+   "slot": "treaty",
+   "chapter": 2,
+   "study": "This treaty was written on a scroll of reed paper.",
+   "test": "Which treaty's text was set down on a reed-paper scroll?",
+   "key": "scroll of reed paper"
+  },
+  {
+   "id": "ombrel.disaster.1",
+   "answer": "ombrel.disaster",
+   "civ": "ombrel",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was a plague in the year 469 of the Star Reckoning.",
+   "test": "Which disaster was an epidemic in year 469 of the Star Reckoning?",
+   "key": "year 469"
+  },
+  {
+   "id": "ombrel.disaster.2",
+   "answer": "ombrel.disaster",
+   "civ": "ombrel",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster was predicted by the scholar Wenna Morrent.",
+   "test": "Which disaster had Wenna Morrent forecast?",
+   "key": "Wenna predicted the Gloam Fever"
+  },
+  {
+   "id": "ombrel.disaster.3",
+   "answer": "ombrel.disaster",
+   "civ": "ombrel",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster emptied the eastern quarter of Ithrae.",
+   "test": "Which disaster left Ithrae's eastern district deserted?",
+   "key": "emptied the eastern quarter of Ithrae"
+  },
+  {
+   "id": "ombrel.disaster.4",
+   "answer": "ombrel.disaster",
+   "civ": "ombrel",
+   "slot": "disaster",
+   "chapter": 3,
+   "study": "This disaster is remembered each year by setting paper boats on the river.",
+   "test": "Which disaster is commemorated every year with paper boats sent down the river?",
+   "key": "paper boats"
+  },
+  {
+   "id": "ombrel.poem.1",
+   "answer": "ombrel.poem",
+   "civ": "ombrel",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem was written by Tobin Imbry.",
+   "test": "Which poem is Tobin Imbry's work?",
+   "key": "Tobin Imbry wrote"
+  },
+  {
+   "id": "ombrel.poem.2",
+   "answer": "ombrel.poem",
+   "civ": "ombrel",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem tells of Orrin Kade breaking the dike to flood the enemy.",
+   "test": "Which poem recounts Orrin Kade breaching the dike to drown the enemy's advance?",
+   "key": "breaking the dike"
+  },
+  {
+   "id": "ombrel.poem.3",
+   "answer": "ombrel.poem",
+   "civ": "ombrel",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem has eight cantos, each set on a different channel of the river.",
+   "test": "Which poem's eight cantos each take place on a different river channel?",
+   "key": "eight cantos"
+  },
+  {
+   "id": "ombrel.poem.4",
+   "answer": "ombrel.poem",
+   "civ": "ombrel",
+   "slot": "poem",
+   "chapter": 5,
+   "study": "This poem begins with the line 'The water holds every star.'",
+   "test": "Which poem opens with 'The water holds every star'?",
+   "key": "The water holds every star"
+  },
+  {
+   "id": "ombrel.monument.1",
+   "answer": "ombrel.monument",
+   "civ": "ombrel",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument was commissioned by Archon Ninev Sallow.",
+   "test": "Which monument did Ninev Sallow order built?",
+   "key": "ordered the Star Well"
+  },
+  {
+   "id": "ombrel.monument.2",
+   "answer": "ombrel.monument",
+   "civ": "ombrel",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument is lined with more than six hundred mirrors of polished bronze.",
+   "test": "Which monument is lined with over six hundred polished bronze mirrors?",
+   "key": "six hundred mirrors"
+  },
+  {
+   "id": "ombrel.monument.3",
+   "answer": "ombrel.monument",
+   "civ": "ombrel",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument stands in the courtyard of the council house in Ithrae.",
+   "test": "Which monument sits in the courtyard of Ithrae's council house?",
+   "key": "courtyard of the council house"
+  },
+  {
+   "id": "ombrel.monument.4",
+   "answer": "ombrel.monument",
+   "civ": "ombrel",
+   "slot": "monument",
+   "chapter": 1,
+   "study": "This monument also works as a telescope, showing stars in daylight from its bottom.",
+   "test": "Which monument doubles as a telescope through which stars can be seen by day?",
+   "key": "works as a telescope"
+  },
+  {
+   "id": "ombrel.deity.1",
+   "answer": "ombrel.deity",
+   "civ": "ombrel",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is the goddess of the stars.",
+   "test": "Which deity rules over the stars?",
+   "key": "goddess of the stars"
+  },
+  {
+   "id": "ombrel.deity.2",
+   "answer": "ombrel.deity",
+   "civ": "ombrel",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's sacred animal is the grey heron.",
+   "test": "Which deity is symbolized by a grey heron?",
+   "key": "grey heron"
+  },
+  {
+   "id": "ombrel.deity.3",
+   "answer": "ombrel.deity",
+   "civ": "ombrel",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity's chief shrine is on Mount Tolva.",
+   "test": "Which deity has her main shrine on Mount Tolva?",
+   "key": "main shrine of Nuvel"
+  },
+  {
+   "id": "ombrel.deity.4",
+   "answer": "ombrel.deity",
+   "civ": "ombrel",
+   "slot": "deity",
+   "chapter": 4,
+   "study": "This deity is honored by burning a strip of paper inscribed with a wish at every dark moon.",
+   "test": "Which deity receives a burned paper wish each dark moon?",
+   "key": "inscribed with a wish"
+  },
+  {
+   "id": "ombrel.code.1",
+   "answer": "ombrel.code",
+   "civ": "ombrel",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code has fifty-five articles.",
+   "test": "Which law code contains fifty-five articles?",
+   "key": "fifty-five articles"
+  },
+  {
+   "id": "ombrel.code.2",
+   "answer": "ombrel.code",
+   "civ": "ombrel",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code says that anyone who repairs a broken dike may take fish from it for a year.",
+   "test": "Which law code allows whoever mends a breached dike to fish there for a year?",
+   "key": "repairs a broken dike"
+  },
+  {
+   "id": "ombrel.code.3",
+   "answer": "ombrel.code",
+   "civ": "ombrel",
+   "slot": "code",
+   "chapter": 3,
+   "study": "This law code is written on the floodgates of Ithrae.",
+   "test": "Which law code is painted on Ithrae's floodgates?",
+   "key": "written on the floodgates of Ithrae"
+  },
+  {
+   "id": "ombrel.code.4",
+   "answer": "ombrel.code",
+   "civ": "ombrel",
+   "slot": "code",
+   "chapter": 3,
+   "study": "Under this law code, thieves were punished by being made to dredge the canals.",
+   "test": "Which law code sentenced thieves to clear mud from the canals?",
+   "key": "dredge the canals"
+  }
+ ]
+}

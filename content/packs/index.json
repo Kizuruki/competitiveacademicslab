@@ -1,0 +1,141 @@
+{
+ "built": "2026-10-28",
+ "minFreq": 2,
+ "packs": [
+  {
+   "id": "geo-africa-mediterranean",
+   "title": "Geography · Africa + Mediterranean",
+   "site": "geo",
+   "file": "geo-africa-mediterranean.json",
+   "clues": 3961,
+   "answers": 515,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ],
+   "region": "Africa + Mediterranean"
+  },
+  {
+   "id": "geo-asia-middle-east-oceania-pacific",
+   "title": "Geography · Asia + Middle East + Oceania/Pacific",
+   "site": "geo",
+   "file": "geo-asia-middle-east-oceania-pacific.json",
+   "clues": 8170,
+   "answers": 1083,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ],
+   "region": "Asia + Middle East + Oceania/Pacific"
+  },
+  {
+   "id": "geo-eastern-central-us-canada",
+   "title": "Geography · Eastern/Central U.S. + Canada",
+   "site": "geo",
+   "file": "geo-eastern-central-us-canada.json",
+   "clues": 13686,
+   "answers": 1875,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ],
+   "region": "Eastern/Central U.S. + Canada"
+  },
+  {
+   "id": "geo-europe-russia",
+   "title": "Geography · Europe + Russia",
+   "site": "geo",
+   "file": "geo-europe-russia.json",
+   "clues": 12299,
+   "answers": 1754,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ],
+   "region": "Europe + Russia"
+  },
+  {
+   "id": "geo-western-us-latin-america-caribbean",
+   "title": "Geography · Western U.S. + Latin America/Caribbean",
+   "site": "geo",
+   "file": "geo-western-us-latin-america-caribbean.json",
+   "clues": 9806,
+   "answers": 1334,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ],
+   "region": "Western U.S. + Latin America/Caribbean"
+  },
+  {
+   "id": "hist-ancient",
+   "title": "History · Ancient",
+   "site": "history",
+   "file": "hist-ancient.json",
+   "clues": 1472,
+   "answers": 188,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ]
+  },
+  {
+   "id": "hist-european",
+   "title": "History · European",
+   "site": "history",
+   "file": "hist-european.json",
+   "clues": 4289,
+   "answers": 523,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ]
+  },
+  {
+   "id": "hist-other",
+   "title": "History · Arts, science, culture and other",
+   "site": "history",
+   "file": "hist-other.json",
+   "clues": 3636,
+   "answers": 564,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ]
+  },
+  {
+   "id": "hist-us",
+   "title": "History · US",
+   "site": "history",
+   "file": "hist-us.json",
+   "clues": 4780,
+   "answers": 658,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ]
+  },
+  {
+   "id": "hist-world",
+   "title": "History · World and geographical",
+   "site": "history",
+   "file": "hist-world.json",
+   "clues": 5273,
+   "answers": 679,
+   "methods": [
+    "flashcards",
+    "tossups",
+    "matching"
+   ]
+  }
+ ]
+}

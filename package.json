@@ -1,0 +1,17 @@
+{
+  "name": "study-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Finds the study method that works best for each student, then runs History Bowl and Geography Bowl study with it: personalized pace, spaced review and weekly plans.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "test:browser": "node test/browser/e2e.mjs",
+    "serve": "python3 -m http.server 8000",
+    "build-world": "python3 scripts/build_world.py content/fantasy-world.json",
+    "check-world": "node scripts/check-world.mjs",
+    "import-packs": "node scripts/import-packs.mjs --geo ../geographybowlreview --history ../historybowlreview",
+    "rephrase": "node scripts/rephrase.mjs"
+  },
+  "engines": { "node": ">=22.5" }
+}
