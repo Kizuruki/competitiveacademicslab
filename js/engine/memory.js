@@ -9,8 +9,15 @@
 //  • Tossups credit clues one by one (see tossupCredit): only the clue that triggered a correct buzz
 //    counts as known. Clues read before it without a buzz aren't counted either way; they're flagged
 //    so the next review asks each of them on its own. Clues never read aren't touched.
+//  • Guesses before learning (pretest) and answers given with a letter hint (cue) are practice only.
+//  • Picking an answer out (matching, multiple choice) counts, but a right pick is rated Hard.
+//  • History brought in from the bowl sites can carry spreadDue, so a big backlog comes back spread
+//    over the following weeks instead of all at once.
+// Each entry also keeps lastResult: whether the latest first-of-the-day attempt was right (a clue
+// is "missed" until a later day's attempt is right, like Missed Questions on the sites).
 import { fsrs, createEmptyCard, generatorParameters, Rating, forgetting_curve } from '../../vendor/ts-fsrs/index.mjs';
 import { dayKey, DAY_MS } from './util.js';
+import { RECOGNITION } from './calibration.js';
 
 export const SLOW_MS = 15000;
 export const PARAMS = generatorParameters({ request_retention: 0.9, enable_fuzz: false, enable_short_term: false, maximum_interval: 365 });
@@ -19,6 +26,7 @@ export { Rating };
 
 export function ratingFor(answer) {
   if (!answer.correct) return Rating.Again;
+  if (RECOGNITION.has(answer.format)) return Rating.Hard;               // picking it out is easier than recalling it
   if (answer.credit === 'trigger' && answer.cluesRead === 1) return Rating.Easy;
   if (answer.ms && answer.ms > SLOW_MS) return Rating.Hard;
   return Rating.Good;
@@ -31,7 +39,7 @@ export function recallAt(stability, days) {
 }
 
 function emptyEntry() {
-  return { card: null, lastDay: null, needsCheck: false, introducedAt: null, method: null, attempts: 0, correct: 0, wrong: 0 };
+  return { card: null, lastDay: null, needsCheck: false, introducedAt: null, method: null, attempts: 0, correct: 0, wrong: 0, lastResult: null, imported: false };
 }
 
 // events → { [clueId]: entry }. Replayed in time order (history brought in from the bowl sites is
@@ -50,6 +58,7 @@ export function applyEvent(mem, ev) {
     return;
   }
   if (ev.type !== 'answer' || !ev.clue || ev.credit === 'unread') return;   // a clue never read isn't touched
+  if (ev.pretest || ev.cue) return;                                         // a guess before learning, or answered with a hint
   const e = mem[ev.clue] || (mem[ev.clue] = emptyEntry());
   if (!e.introducedAt) { e.introducedAt = ev.t; e.method = ev.method || null; }
   if (ev.credit === 'read-before') { e.needsCheck = true; return; }   // read, didn't trigger a buzz
@@ -62,8 +71,10 @@ export function applyEvent(mem, ev) {
   const now = new Date(ev.t);
   const card = e.card ? reviveCard(e.card) : createEmptyCard(now);
   const next = scheduler.next(card, now, ratingFor(ev)).card;
-  e.card = { due: next.due.getTime(), stability: next.stability, difficulty: next.difficulty, reps: next.reps, lapses: next.lapses, state: next.state, last: ev.t };
+  e.card = { due: Math.max(next.due.getTime(), ev.spreadDue || 0), stability: next.stability, difficulty: next.difficulty, reps: next.reps, lapses: next.lapses, state: next.state, last: ev.t };
   e.lastDay = day;
+  e.lastResult = !!ev.correct;
+  e.imported = ev.phase === 'import';
 }
 
 function reviveCard(c) {
@@ -77,14 +88,25 @@ export function recallNow(entry, now = Date.now()) {
 }
 
 // Clues to review now: due by FSRS, or flagged for a standalone check. Most at risk first.
+// Missed clues (latest attempt wrong, not yet answered today) come first, then the rest.
 export function dueClues(mem, now = Date.now(), { includeChecks = true } = {}) {
   const out = [];
+  const today = dayKey(now);
   for (const [clue, e] of Object.entries(mem)) {
+    const missed = e.lastResult === false && e.lastDay !== today;
     const due = e.card && e.card.due <= now;
-    const check = includeChecks && e.needsCheck && e.lastDay !== dayKey(now);
-    if (due || check) out.push({ clue, reason: due ? 'due' : 'check', recall: recallNow(e, now), overdueDays: e.card ? (now - e.card.due) / DAY_MS : 0 });
+    const check = includeChecks && e.needsCheck && e.lastDay !== today;
+    if (due || check || missed) out.push({ clue, reason: missed ? 'missed' : due ? 'due' : 'check', recall: recallNow(e, now), overdueDays: e.card ? (now - e.card.due) / DAY_MS : 0 });
   }
-  return out.sort((a, b) => a.recall - b.recall);
+  return out.sort((a, b) => (a.reason === 'missed') !== (b.reason === 'missed') ? (a.reason === 'missed' ? -1 : 1) : a.recall - b.recall);
+}
+
+// new / missed / mastered, the way the bowl sites count them
+export function status(e) {
+  if (!e || !e.introducedAt) return 'new';
+  if (e.lastResult === false) return 'missed';
+  if (e.lastResult === true) return 'mastered';
+  return 'learning';
 }
 
 // How many reviews fall due on each of the next `days` days (index 0 = today, including overdue).

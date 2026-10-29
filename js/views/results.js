@@ -8,7 +8,7 @@ import { calibrationEngagement } from '../engine/personalize.js';
 import { studySessionsByMethod } from '../engine/metrics.js';
 import { mean } from '../engine/util.js';
 
-const COLORS = { flashcards: 'var(--c1)', tossups: 'var(--c2)', story: 'var(--c3)', matching: 'var(--c4)' };
+const COLORS = { flashcards: 'var(--c1)', tossups: 'var(--c2)', story: 'var(--c3)', matching: 'var(--c4)', guess: 'var(--c5)', hints: 'var(--c6)', choice: 'var(--c7)', lightning: 'var(--c8)', confidence: 'var(--c9)', connect: 'var(--c10)', duel: 'var(--c11)' };
 const civName = (id) => world().civs.find((c) => c.id === id)?.name || id;
 
 export function renderResults(root) {
@@ -44,7 +44,7 @@ export function renderResults(root) {
       h('td', { class: 'num' }, `×${num(p.engage.mean, 2)}`),
       h('td', { class: 'num' }, num(yields[m])),
       h('td', { class: 'num' }, h('div', { class: 'bar' }, h('span', { style: { width: `${Math.round(chance[m] * 100)}%`, background: COLORS[m] } }), h('em', {}, pct(chance[m])))),
-      h('td', { class: 'muted small' }, `${num(p.evidence.hours * 60)} min · ${Math.round(p.evidence.keptItems)} check-in answers · ${p.engage.n} sessions`));
+      h('td', { class: 'muted small' }, p.evidence.hours || p.engage.n ? `${num(p.evidence.hours * 60)} min · ${Math.round(p.evidence.keptItems)} later answers · ${p.engage.n} sessions${p.evidence.study ? ' · incl. real study' : ''}` : 'not tried yet'));
   });
 
   mount(root, h('section', {},
@@ -65,9 +65,10 @@ export function renderResults(root) {
     ] : null,
     Object.keys(study).length ? [
       h('h2', {}, 'Study sessions'),
-      h('p', { class: 'muted small' }, 'How long you keep going when you study for real, by method. Longer-than-usual sessions raise a method’s engagement number.'),
-      h('ul', { class: 'plain-list' }, Object.entries(study).map(([m, mins]) => h('li', {}, h('strong', {}, METHOD_INFO[m]?.label || m), `: ${mins.length} session${mins.length > 1 ? 's' : ''}, average ${num(mean(mins))} min`))),
+      h('p', { class: 'muted small' }, 'How far past your plan you keep going when you study for real (1.0 = exactly the plan), by method. Going further than usual raises a method’s engagement number.'),
+      h('ul', { class: 'plain-list' }, Object.entries(study).map(([m, v]) => h('li', {}, h('strong', {}, METHOD_INFO[m]?.label || m), `: ${v.length} session${v.length > 1 ? 's' : ''}, ×${num(mean(v), 2)} of the plan on average`))),
     ] : null,
+    studyTable(H),
     h('h2', {}, 'Engagement from calibration'),
     h('p', { class: 'muted small' }, 'Enjoyment 1–5 maps to ×0.75–×1.25, extra practice after finishing adds up to ×0.25, stopping early takes off 0.15. Time spent during calibration isn’t used: everyone studies the same clues, so time there mostly reflects speed.'),
     h('ul', { class: 'plain-list' }, steps.map((r) => h('li', {}, `${METHOD_INFO[r.method].label}: ×${num(calibrationEngagement(r.engagement), 2)}`)))));
@@ -98,4 +99,24 @@ function retentionChart(steps, H) {
   }
   const legend = h('div', { class: 'legend' }, steps.map((r) => h('span', {}, h('span', { class: 'dot', style: { background: COLORS[r.method] } }), METHOD_INFO[r.method].label)));
   return h('figure', { class: 'chart-box' }, svg, legend, h('figcaption', { class: 'muted small' }, 'Dots: share right at each test. Lines: fitted forgetting curves.'));
+}
+
+// Methods measured in real study: new clues, then how many were still right the next time they came up.
+function studyTable(H) {
+  const rows = model.studyResults();
+  if (!rows.length) return h('p', { class: 'muted small' }, 'Real study counts too: once a method has 10 of its new clues come back in review, its results show here and feed the model (at half the weight of calibration, since real clues aren’t controlled).');
+  return [
+    h('h2', {}, 'From real study'),
+    h('p', { class: 'muted small' }, 'Each session’s method is picked at random from the likely-best ones, and new clues come from the same queue whatever the method, so over time the methods get comparable clues. These count half as much as calibration.'),
+    h('div', { class: 'table-wrap' }, h('table', { class: 'grid' },
+      h('thead', {}, h('tr', {}, ['Method', 'New clues', 'Active min', 'Right in session', 'Right when next seen', 'Typical gap', `Kept at ${H} d`, 'Learned / hr'].map((x, i) => h('th', { class: i ? 'num' : '' }, x)))),
+      h('tbody', {}, rows.map((r) => {
+        const c = r.checkins[r.lastCheckin];
+        return h('tr', {},
+          h('td', {}, h('span', { class: 'dot', style: { background: COLORS[r.method] } }), METHOD_INFO[r.method]?.label || r.method),
+          h('td', { class: 'num' }, String(r.introduced)), h('td', { class: 'num' }, num(r.activeHours * 60)),
+          h('td', { class: 'num' }, pct(r.immediate.p)), h('td', { class: 'num' }, `${pct(c.k / c.n)} of ${c.n}`), h('td', { class: 'num' }, `${r.lastCheckin} d`),
+          h('td', { class: 'num' }, r.keptAtH === null ? '—' : pct(r.keptAtH)), h('td', { class: 'num' }, num(r.learnedPerHour)));
+      })))),
+  ];
 }

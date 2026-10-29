@@ -1,20 +1,23 @@
-// Study: a real session on History or Geography packs. Due reviews first (in a different format
-// from how the clue was studied), then new clues with the method the model picks, at the student's
-// pace. When the planned clues are done the student can keep going with more; how far past (or
-// short of) the plan they go is the engagement signal for that method.
-import { h, mount, toast, pct, num } from '../ui.js';
+// Study: a real session on History or Geography packs, working like each site's practice mode
+// (see sitesync.js). Missed and due reviews first, asked on their own as typed questions; then new
+// clues with the method the model picks, at the student's pace. When the planned clues are done the
+// student can keep going with more; how far past (or short of) the plan they go is the engagement
+// signal for that method. Leaving partway keeps everything done so far; the session shows as
+// unfinished and can be continued or ended.
+import { h, mount, toast, pct, dateLabel } from '../ui.js';
 import * as store from '../store.js';
 import * as model from '../model.js';
 import * as sync from '../sync.js';
+import * as sitesync from '../sitesync.js';
 import { packIndex, loadPack, packOf, allClues, answerOf, clue as clueById } from '../content.js';
-import { METHOD_INFO } from '../engine/calibration.js';
+import { METHODS, METHOD_INFO } from '../engine/calibration.js';
 import { planSession } from '../engine/planner.js';
 import { PACE_LEVELS } from '../engine/pace.js';
-import { shuffle, uid, makeRng } from '../engine/util.js';
+import { shuffle, uid } from '../engine/util.js';
 import { frame, studyWithMethod, testClues } from './run.js';
 import { renderSiteBox } from './settings.js';
 
-const PER_ANSWER = 4;           // most new clues for one answer in one session
+const PER_ANSWER = { geo: 4, history: 6 };   // most new clues for one answer in one session (a History tossup has ~5)
 const SPREAD = 1.5;             // priority = frequency ÷ (1 + clues of it already learned)^SPREAD
 
 export async function selectedPacks() {
@@ -43,15 +46,17 @@ export function pickNewClues(packIds, n, rng = Math.random) {
     if (mem[c.id]?.introducedAt) g.known++; else g.fresh.push(c);
   }
   const sites = [...bySite.entries()].map(([id, m]) => ({ id, taken: 0, groups: [...m.values()].filter((g) => g.fresh.length) }));
-  for (const st of sites) for (const g of st.groups) { g.fresh = shuffle(g.fresh, rng); g.taken = 0; }
+  // History: a tossup's clues together, in order (it's mastered on the site once all are right)
+  for (const st of sites) for (const g of st.groups) { g.fresh = st.id === 'history' ? g.fresh.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true })) : shuffle(g.fresh, rng); g.taken = 0; }
   const score = (g) => g.freq / Math.pow(1 + g.known + g.taken, SPREAD);
   const out = [];
   while (out.length < n) {
-    const open = sites.filter((st) => st.groups.some((g) => g.taken < PER_ANSWER && g.fresh.length));
+    const cap = (st) => PER_ANSWER[st.id] || 4;
+    const open = sites.filter((st) => st.groups.some((g) => g.taken < cap(st) && g.fresh.length));
     if (!open.length) break;
     const st = open.reduce((a, b) => (b.taken < a.taken ? b : a));
     let best = null, bestS = -1;
-    for (const g of st.groups) if (g.taken < PER_ANSWER && g.fresh.length) { const sc = score(g); if (sc > bestS) { bestS = sc; best = g; } }
+    for (const g of st.groups) if (g.taken < cap(st) && g.fresh.length) { const sc = score(g); if (sc > bestS) { bestS = sc; best = g; } }
     out.push(best.fresh.shift()); best.taken++; st.taken++;
   }
   return shuffle(out, rng);
@@ -66,104 +71,155 @@ export async function renderStudy(root) {
   }
   const packs = await selectedPacks();
   const d = store.current();
-  const methods = ['flashcards', 'tossups', 'matching'].filter((m) => packs.every((p) => (packOf(p).methods || []).includes(m)));
+  const open = model.unfinished().find((x) => x.kind === 'study');
   const due = model.due(packs);
+  const missedDue = due.filter((x) => x.reason === 'missed');
   const defaultMin = d.settings.sessionMinutes || Math.max(10, Math.round(d.settings.weeklyMinutes / d.settings.studyDays));
-  const chance = model.chances(methods);
-  let method = model.recommend(methods);
+  const chance = model.chances(METHODS);
+  let method = model.recommend(METHODS);
   const recommended = method;
-  let minutes = defaultMin;
+  let minutes = defaultMin, mode = 'normal';
+  const counts = model.counts(packs);
 
   const summary = h('div', { class: 'plan-box' });
   const update = () => {
-    const plan = planSession({ minutes, due: due.length, pace: model.pace() });
+    const plan = planFor({ minutes, due, mode });
     mount(summary,
-      h('div', { class: 'stat' }, h('b', {}, String(plan.reviews)), h('span', {}, `review${plan.reviews === 1 ? '' : 's'} due${due.length > plan.reviews ? ` (of ${due.length})` : ''}`)),
+      h('div', { class: 'stat' }, h('b', {}, String(plan.reviews.length)), h('span', {}, `review${plan.reviews.length === 1 ? '' : 's'}${due.length > plan.reviews.length && mode === 'normal' ? ` (of ${due.length} due)` : ''}`)),
       h('div', { class: 'stat' }, h('b', {}, String(plan.newClues)), h('span', {}, 'new clues')),
       h('div', { class: 'stat' }, h('b', {}, `${model.pace()}/hr`), h('span', {}, 'your pace')));
-    return plan;
   };
   const minInput = h('input', { type: 'number', min: 5, max: 180, step: 5, value: minutes, class: 'num-input', 'aria-label': 'Minutes', oninput: (e) => { minutes = Math.max(5, Number(e.target.value) || defaultMin); update(); } });
-  const methodSel = h('div', { class: 'method-pick' }, methods.map((m) => {
-    const b = h('button', { type: 'button', class: 'method-btn', 'aria-pressed': String(m === method), onclick: () => { method = m; methodSel.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); } },
-      h('strong', {}, METHOD_INFO[m].label), h('span', { class: 'muted small' }, `${pct(chance[m])} chance best`));
+  const modeSel = h('div', { class: 'row' },
+    h('label', { class: 'check' }, h('input', { type: 'radio', name: 'mode', checked: true, onchange: () => { mode = 'normal'; update(); } }), 'Reviews, then new clues'),
+    h('label', { class: 'check' }, h('input', { type: 'radio', name: 'mode', disabled: !missedDue.length, onchange: () => { mode = 'missed'; update(); } }), `Missed questions only (${missedDue.length})`));
+  const methodSel = h('div', { class: 'method-pick' }, METHODS.map((m) => {
+    const b = h('button', { type: 'button', class: 'method-btn', title: METHOD_INFO[m].why, 'aria-pressed': String(m === method), onclick: () => { method = m; methodSel.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); whyEl.textContent = METHOD_INFO[m].why; } },
+      h('strong', {}, METHOD_INFO[m].label, m === recommended ? ' ★' : ''), h('span', { class: 'muted small' }, METHOD_INFO[m].blurb), h('span', { class: 'small' }, `${pct(chance[m])} chance best`));
     return b;
   }));
+  const whyEl = h('p', { class: 'muted small' }, METHOD_INFO[method].why);
   const packBoxes = h('div', { class: 'pack-list' }, idx.packs.map((p) => h('label', { class: 'check' },
     h('input', { type: 'checkbox', value: p.id, checked: packs.includes(p.id), onchange: async () => {
       d.settings.packs = [...packBoxes.querySelectorAll('input:checked')].map((x) => x.value);
-      store.saveNow();
+      store.save();
       renderStudy(root);
     } }), `${p.title} `, h('span', { class: 'muted small' }, `${p.answers} answers`))));
+  const countLine = (site, label) => counts[site] ? h('div', { class: 'stat' }, h('b', {}, `${counts[site].mastered}`), h('span', {}, `${label} mastered · ${counts[site].missed} missed`)) : null;
 
   update();
   mount(root, h('section', {},
     h('h1', {}, 'Study'),
+    open ? h('div', { class: 'callout' }, `You have an unfinished session from ${dateLabel(open.start.t)} (${METHOD_INFO[open.start.method]?.label || ''}): ${open.answers.length} answers so far. `,
+      h('div', { class: 'row' }, h('button', { class: 'btn primary small', type: 'button', onclick: () => runSession(root, { resume: open }) }, 'Continue it'),
+        h('button', { class: 'btn ghost small', type: 'button', onclick: () => { endUnfinished(open); renderStudy(root); } }, 'End it here'))) : null,
+    h('div', { class: 'plan-box' }, countLine('geo', 'Geography clues'), countLine('history', 'History clues')),
     h('div', { class: 'card' },
       h('div', { class: 'row wrap' }, h('label', {}, 'Minutes ', minInput), summary),
+      modeSel,
       h('h3', {}, 'Method for new clues'),
-      h('p', { class: 'muted small' }, `Picked for you: `, h('strong', {}, METHOD_INFO[method].label), '. The pick is drawn from how likely each method is to be your best (see Results), so it changes now and then while the model is still unsure. You can choose another.'),
-      methodSel,
-      h('div', { class: 'row' }, h('button', { class: 'btn primary', type: 'button', onclick: () => runSession(root, { packs, method, minutes, due, chosen: method === recommended ? 'recommended' : 'own' }) }, 'Start'))),
+      h('p', { class: 'muted small' }, 'Picked for you: ', h('strong', {}, METHOD_INFO[method].label), ' ★. The pick is drawn from how likely each method is to be your best (see Results), so it changes now and then while the model is still unsure — that’s how it learns about methods you haven’t tried. You can choose another.'),
+      methodSel, whyEl,
+      h('div', { class: 'row' }, h('button', { class: 'btn primary', type: 'button', onclick: () => runSession(root, { packs, method, minutes, mode, due, chosen: method === recommended ? 'recommended' : 'own' }) }, 'Start'))),
     h('details', { class: 'card' }, h('summary', {}, `Question packs (${packs.length} of ${idx.packs.length})`), packBoxes,
       h('p', { class: 'muted small' }, 'New clues come from the answers asked most often first. With both History and Geography packs selected, new clues are split evenly between them.')),
     renderSiteBox()));
 }
 
-async function runSession(root, { packs, method, minutes, due, chosen }) {
-  const d = store.current();
-  const sessionId = uid();
-  const plan = planSession({ minutes, due: due.length, pace: model.pace() });
-  const fr = frame(root, { title: 'Study session', note: `${plan.reviews} reviews, then ${plan.newClues} new clues with ${METHOD_INFO[method].label.toLowerCase()}` });
-  const startEvents = d.events.length;
-  let reviewMs = 0, reviewN = 0, reviewK = 0, stopped = false;
+function planFor({ minutes, due, mode }) {
+  if (mode === 'missed') return { reviews: due.filter((x) => x.reason === 'missed').map((x) => x.clue), newClues: 0 };
+  const p = planSession({ minutes, due: due.length, pace: model.pace() });
+  return { reviews: due.slice(0, p.reviews).map((x) => x.clue), newClues: p.newClues };
+}
 
-  // 1. Reviews: the same clues, asked on their own as typed questions.
-  const reviews = due.slice(0, plan.reviews).map((x) => clueById(x.clue)).filter(Boolean);
+// End an unfinished session as it stands: it's logged as stopped early, with what was done.
+function endUnfinished(open) {
+  const p = open.pauses;
+  const sum = (k) => p.reduce((s, x) => s + (x[k] || 0), 0);
+  const planned = (open.start.planned || []).length;
+  store.log({ type: 'session', kind: 'study', sessionId: open.sessionId, method: open.start.method, chosen: open.start.chosen, packs: open.start.packs,
+    activeMs: sum('studyMs') + sum('extraMs'), totalMs: sum('activeMs'), reviewMs: sum('reviewMs'), studyMs: sum('studyMs'), extraMs: sum('extraMs'),
+    planned, introduced: open.exposed.size, finished: false, stoppedEarly: true, status: 'ended-early',
+    reviews: open.answers.filter((e) => e.phase === 'review').length, reviewRight: open.answers.filter((e) => e.phase === 'review' && e.correct).length,
+    engageRatio: planned ? Math.min(1, open.exposed.size / planned) : null, minutes: open.start.minutes });
+  store.saveNow();
+  sitesync.flush().catch(() => {});
+}
+
+async function runSession(root, opts) {
+  const d = store.current();
+  let start, prior = { reviewMs: 0, studyMs: 0, extraMs: 0 };
+  if (opts.resume) {
+    start = opts.resume.start;
+    for (const p of opts.resume.pauses) for (const k of Object.keys(prior)) prior[k] += p[k] || 0;
+  } else {
+    const plan = planFor(opts);
+    start = store.log({ type: 'session-start', kind: 'study', sessionId: uid(), method: opts.method, chosen: opts.chosen, packs: opts.packs, minutes: opts.minutes, mode: opts.mode,
+      reviews: plan.reviews, planned: pickNewClues(opts.packs, plan.newClues).map((c) => c.id) });
+    store.saveNow();
+  }
+  const { sessionId, method } = start;
+  const packs = start.packs || [];
+  const answered = new Set(d.events.filter((e) => e.type === 'answer' && e.sessionId === sessionId && e.phase === 'review').map((e) => e.clue));
+  const seen = new Set(d.events.filter((e) => e.type === 'expose' && e.sessionId === sessionId).map((e) => e.clue));
+  const reviews = (start.reviews || []).filter((id) => !answered.has(id)).map(clueById).filter(Boolean);
+  let batch = (start.planned || []).filter((id) => !seen.has(id)).map(clueById).filter(Boolean);
+  const planned = (start.planned || []).length;
+  const fr = frame(root, { title: 'Study session', note: `${reviews.length} reviews, then ${batch.length} new clues with ${METHOD_INFO[method].label.toLowerCase()}` });
+  const totals = { reviewMs: 0, studyMs: 0, extraMs: 0 };
+  const pause = (seg) => { store.log({ type: 'session-pause', sessionId, ...seg, activeMs: (seg.reviewMs || 0) + (seg.studyMs || 0) + (seg.extraMs || 0) }); store.saveNow(); sitesync.flush().catch(() => {}); };
+  let reviewN = 0, reviewK = 0, stopped = false;
+
+  // 1. Reviews: missed first, then due — the same clues, asked on their own as typed questions.
   if (reviews.length) {
-    fr.setTitle('Review', `${reviews.length} due`);
-    const r = await testClues(fr, { clues: reviews, title: 'Review', phase: 'review', sessionId, feedback: 'each' });
-    reviewMs = r.activeMs; reviewN = r.n; reviewK = r.k;
+    fr.setTitle('Review', `${reviews.length} to go`);
+    const r = await testClues(fr, { clues: reviews, title: 'Review', phase: 'review', sessionId, feedback: 'each', onPause: ({ activeMs }) => pause({ reviewMs: activeMs }) });
+    totals.reviewMs = r.activeMs; reviewN = r.n; reviewK = r.k;
     stopped = r.n < reviews.length;
   }
 
   // 2. New clues with the method; afterwards, more if they want.
-  let studyMs = 0, extraMs = 0, exposed = [], planned = plan.newClues, finished = false, rounds = 0;
-  if (!stopped && planned > 0) {
-    let batch = pickNewClues(packs, planned);
+  let exposed = [...seen], finished = !batch.length && planned > 0 && !stopped, rounds = 0;
+  if (!stopped && batch.length) {
     while (batch.length) {
       rounds++;
       fr.setTitle(`New clues · ${METHOD_INFO[method].label}`, rounds === 1 ? `${batch.length} new clues` : `${batch.length} more (extra)`);
-      const r = await studyWithMethod(fr, { method, clues: batch, sessionId, phase: 'study', allowExtra: false });
+      const extraRound = rounds > 1;
+      const r = await studyWithMethod(fr, { method, clues: batch, sessionId, phase: 'study', allowExtra: false, baseMs: prior.studyMs + totals.studyMs,
+        onPause: (p) => pause({ reviewMs: totals.reviewMs, [extraRound ? 'extraMs' : 'studyMs']: p.activeMs + p.extraMs, ...(extraRound ? { studyMs: totals.studyMs } : {}) }) });
       exposed.push(...r.exposed);
-      if (rounds === 1) { studyMs = r.activeMs; finished = r.finished; } else extraMs += r.activeMs;
+      if (!extraRound) { totals.studyMs = r.activeMs; finished = r.finished; } else totals.extraMs += r.activeMs;
       if (!r.finished) break;
       const more = await offerMore(fr, model.pace());
       if (!more) break;
       batch = pickNewClues(packs, Math.max(5, Math.round(model.pace() / 6)));   // about ten more minutes' worth
     }
   }
+  const studyMs = prior.studyMs + totals.studyMs, extraMs = prior.extraMs + totals.extraMs, reviewMs = prior.reviewMs + totals.reviewMs;
   const plannedMs = (planned / model.pace()) * 3600000;
   // past the plan: extra time as a share of the planned time, or extra clues as a share of the
   // planned clues, whichever is more; short of it: the share of planned clues reached
+  exposed = [...new Set(exposed)];
   const extraClues = Math.max(0, exposed.length - planned);
   const engageRatio = planned ? (finished ? 1 + Math.max(extraMs / Math.max(60000, plannedMs), extraClues / planned) : Math.min(1, exposed.length / planned)) : null;
-  store.log({ type: 'session', kind: 'study', sessionId, method, chosen, packs, activeMs: studyMs + extraMs, totalMs: reviewMs + studyMs + extraMs, reviewMs, studyMs, extraMs,
-    planned, introduced: exposed.length, finished, stoppedEarly: !finished && planned > 0, reviews: reviewN, reviewRight: reviewK, engageRatio, minutes });
+  const allAnswers = d.events.filter((e) => e.type === 'answer' && e.sessionId === sessionId && e.phase === 'review');
+  store.log({ type: 'session', kind: 'study', sessionId, method, chosen: start.chosen, packs, activeMs: studyMs + extraMs, totalMs: reviewMs + studyMs + extraMs, reviewMs, studyMs, extraMs,
+    planned, introduced: exposed.length, finished, stoppedEarly: !finished && planned > 0, reviews: allAnswers.length, reviewRight: allAnswers.filter((e) => e.correct).length, engageRatio, minutes: start.minutes, resumed: !!opts.resume || undefined });
   const pace = model.checkPace();
   store.saveNow();
   fr.end();
-  const sent = await sync.sendSiteAnswers(d.events.slice(startEvents)).catch(() => 0);
-
+  const syncNote = h('li', { class: 'muted' }, 'Updating the History and Geography sites…');
   mount(fr.stage, h('div', { class: 'card' },
     h('h2', {}, 'Session done'),
     h('ul', { class: 'plain-list' },
       reviewN ? h('li', {}, `Reviews: ${reviewK} of ${reviewN} right.`) : null,
-      exposed.length ? h('li', {}, `New clues: ${exposed.length}${extraMs ? ` (${exposed.length - Math.min(planned, exposed.length)} beyond the plan)` : ''}.`) : null,
+      exposed.length ? h('li', {}, `New clues: ${exposed.length}${extraClues ? ` (${extraClues} beyond the plan)` : ''}.`) : null,
       h('li', {}, `Active time: ${minutesText(reviewMs + studyMs + extraMs)}.`),
       pace.change ? h('li', { class: pace.change > 0 ? 'ok' : 'no' }, `Pace ${pace.change > 0 ? 'up' : 'down'} to ${PACE_LEVELS[pace.level]} new clues per hour: ${pace.reason}.`) : h('li', { class: 'muted' }, `Pace stays at ${model.pace()} new clues per hour (${pace.reason}).`),
-      sent ? h('li', { class: 'muted' }, `${sent} answers also counted on the Geography site.`) : null),
+      syncNote),
     h('div', { class: 'row' }, h('a', { class: 'btn primary', href: '#/' }, 'Home'), h('a', { class: 'btn', href: '#/plan' }, 'This week’s plan'))));
+  try { await sitesync.flush(); syncNote.textContent = 'Your answers are on the History and Geography sites too: mastered, missed and spaced review.'; }
+  catch (_) { syncNote.textContent = 'Couldn’t reach the bowl sites just now; your answers will be sent next time.'; }
 }
 
 const minutesText = (ms) => (ms < 60000 ? 'under a minute' : `${Math.round(ms / 60000)} min`);

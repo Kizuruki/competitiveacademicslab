@@ -10,7 +10,10 @@
 import { forgetting_curve } from '../../vendor/ts-fsrs/index.mjs';
 import { PARAMS } from './memory.js';
 import { CHECKIN_DAYS } from './calibration.js';
-import { daysBetween } from './util.js';
+import { daysBetween, dayKey, median, DAY_MS } from './util.js';
+
+// A test taken more than this long after studying (an interruption) counts as a delayed test.
+export const LATE_TEST_MS = 30 * 60000;
 
 const curve = (t, S) => (t <= 0 ? 1 : forgetting_curve(PARAMS.w, t, S));
 const S_GRID = Array.from({ length: 120 }, (_, i) => 0.2 * Math.pow(1.08, i));   // 0.2 … ~1800 days
@@ -47,14 +50,22 @@ export function stepMetrics(step, events, horizonDays = 30) {
   }
   const activeHours = session ? session.activeMs / 3600000 : 0;
   const immN = imm.length, immK = imm.filter((e) => e.correct).length;
-  const points = [{ t: 0, n: immN, k: immK }, ...Object.values(checkins)];
+  // If the test came well after the studying (the student was interrupted), it isn't an immediate
+  // test: it goes on the forgetting curve at its real delay, and "learned" is read off the fitted
+  // curve at zero instead (once check-ins give the curve a shape).
+  let studyEnd = 0;
+  for (const e of events) if (e.sessionId === sid && (e.type === 'expose' || (e.type === 'answer' && e.phase === 'study')) && e.t > studyEnd) studyEnd = e.t;
+  const testStart = imm.reduce((m, e) => Math.min(m, e.t), Infinity);
+  const testDelayMs = immN && studyEnd && testStart > studyEnd ? testStart - studyEnd : 0;
+  const late = testDelayMs > LATE_TEST_MS;
+  const points = [{ t: late ? testDelayMs / DAY_MS : 0, n: immN, k: immK }, ...Object.values(checkins)];
   const fit = fitRetention(points);
-  const p0 = immN ? immK / immN : null;
+  const p0 = !immN ? null : late && fit && Object.keys(checkins).length ? fit.p0 : immK / immN;
   const keptAtH = fit ? fit.at(horizonDays) : null;
   const lastCheckin = Math.max(0, ...Object.keys(checkins).map(Number));
   return {
     method: step.method, civ: step.civ, sessionId: sid, finishedAt: step.finishedAt,
-    activeHours, introduced, immediate: { n: immN, k: immK, p: p0 }, checkins, fit, lastCheckin,
+    activeHours, introduced, immediate: { n: immN, k: immK, p: p0, raw: immN ? immK / immN : null, delayHours: late ? testDelayMs / 3600000 : 0 }, checkins, fit, lastCheckin,
     learnedPerHour: activeHours > 0 && p0 !== null ? (introduced * p0) / activeHours : null,
     keptAtH, horizonDays,
     durablePerHour: activeHours > 0 && keptAtH !== null ? (introduced * keptAtH) / activeHours : null,
@@ -85,4 +96,60 @@ export function reviewAccuracy(events, sinceT) {
 
 export function activeMinutesSince(events, sinceT) {
   return events.filter((e) => e.type === 'session' && e.t >= sinceT).reduce((s, e) => s + (e.totalMs ?? e.activeMs ?? 0), 0) / 60000;
+}
+
+// Real study, per method: the same numbers as a calibration step, from ordinary sessions. The
+// method for each session is drawn at random (Thompson sampling) and new clues come from the same
+// queue whatever the method, so over many sessions the methods get comparable clues.
+//   right away   = the first graded attempt at each new clue in its session
+//   check-ins    = the first attempt on a later day (usually its first review), at however many days
+//                  after it was introduced
+// A method needs at least `minReviewed` of those later attempts before it counts.
+export function studyEvidence(events, horizonDays = 30, minReviewed = 10) {
+  const sessions = new Map();   // sessionId → method, for study sessions
+  const hours = {};
+  for (const e of events) {
+    if (e.type === 'session-start' && e.kind === 'study') sessions.set(e.sessionId, e.method);
+    if (e.type === 'session' && e.kind === 'study' && e.method) {
+      sessions.set(e.sessionId, e.method);
+      hours[e.method] = (hours[e.method] || 0) + ((e.studyMs || 0) + (e.extraMs || 0)) / 3600000;
+    }
+  }
+  const intro = new Map();   // clue → { method, t, session }
+  for (const e of events) {
+    if (e.type !== 'expose' || !String(e.clue).includes(':') || intro.has(e.clue)) continue;
+    const m = sessions.get(e.sessionId);
+    if (m) intro.set(e.clue, { method: m, t: e.t, session: e.sessionId, day: dayKey(e.t) });
+  }
+  const first = new Map(), later = new Map();
+  for (const e of events) {
+    if (e.type !== 'answer' || e.pretest || e.cue || e.credit === 'unread' || e.credit === 'read-before') continue;
+    const i = intro.get(e.clue);
+    if (!i || e.t < i.t) continue;
+    if (e.sessionId === i.session) { if (!first.has(e.clue)) first.set(e.clue, !!e.correct); }
+    else if (dayKey(e.t) !== i.day && !later.has(e.clue)) later.set(e.clue, { t: daysBetween(i.t, e.t), correct: !!e.correct });
+  }
+  const out = [];
+  for (const m of new Set([...intro.values()].map((x) => x.method))) {
+    const clues = [...intro.entries()].filter(([, x]) => x.method === m).map(([c]) => c);
+    const imm = clues.filter((c) => first.has(c));
+    const rev = clues.filter((c) => later.has(c));
+    if (rev.length < minReviewed || !hours[m]) continue;
+    const byDay = new Map();
+    for (const c of rev) { const { t, correct } = later.get(c); const b = byDay.get(t) || { t, n: 0, k: 0 }; b.n++; if (correct) b.k++; byDay.set(t, b); }
+    const immK = imm.filter((c) => first.get(c)).length;
+    const fit = fitRetention([{ t: 0, n: imm.length, k: immK }, ...byDay.values()]);
+    const p0 = imm.length ? immK / imm.length : null;
+    const keptAtH = fit ? fit.at(horizonDays) : null;
+    const lastCheckin = Math.round(median(rev.map((c) => later.get(c).t)));
+    out.push({
+      method: m, source: 'study', weight: 0.5, activeHours: hours[m], introduced: clues.length,
+      immediate: { n: imm.length, k: immK, p: p0 }, checkins: { [lastCheckin]: { n: rev.length, k: rev.filter((c) => later.get(c).correct).length, t: lastCheckin } },
+      lastCheckin, fit, keptAtH, horizonDays,
+      learnedPerHour: p0 !== null ? (clues.length * p0) / hours[m] : null,
+      durablePerHour: keptAtH !== null ? (clues.length * keptAtH) / hours[m] : null,
+      engagement: null,
+    });
+  }
+  return out;
 }

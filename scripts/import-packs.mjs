@@ -118,16 +118,21 @@ function buildPacks(site, items, groupOf) {
     if (!it.group) continue;
     const g = groups.get(it.group);
     if (g.freq < MIN_FREQ) continue;
-    if (!packs.has(it.pack)) packs.set(it.pack, { id: it.pack, title: it.packTitle, site, subs: [], answers: [], aIndex: new Map(), clues: [] });
+    if (!packs.has(it.pack)) packs.set(it.pack, { id: it.pack, title: it.packTitle, site, subs: [], answers: [], aIndex: new Map(), src: [], sIndex: new Map(), clues: [] });
     const p = packs.get(it.pack);
     if (!p.aIndex.has(g.id)) { p.aIndex.set(g.id, p.answers.length); p.answers.push([g.id, g.name, g.freq]); }
     let si = p.subs.indexOf(it.sub); if (si < 0) { si = p.subs.length; p.subs.push(it.sub); }
     const sameAsName = it.forms.length === 1 && it.forms[0].trim() === g.name;
-    const row = [it.key, p.aIndex.get(g.id), it.text, si];
-    if (!sameAsName) row.push(it.forms);
+    const row = [it.key, p.aIndex.get(g.id), it.text, si, sameAsName ? null : it.forms];
+    // History: which site question the clue comes from — [site key, quarter, set, category]
+    if (it.src) {
+      if (!p.sIndex.has(it.src[0])) { p.sIndex.set(it.src[0], p.src.length); p.src.push(it.src); }
+      row.push(p.sIndex.get(it.src[0]));
+    }
+    while (row.length && row[row.length - 1] === null) row.pop();
     p.clues.push(row);
   }
-  return [...packs.values()].map(({ aIndex, ...p }) => p);
+  return [...packs.values()].map(({ aIndex, sIndex, ...p }) => (p.src.length ? p : (delete p.src, p)));
 }
 
 const index = { built: new Date().toISOString().slice(0, 10), minFreq: MIN_FREQ, packs: [] };
@@ -136,7 +141,7 @@ function write(p, extra) {
   const file = `${p.id}.json`;
   fs.writeFileSync(path.join(OUT, file), JSON.stringify(p));
   const size = fs.statSync(path.join(OUT, file)).size;
-  index.packs.push({ id: p.id, title: p.title, site: p.site, file, clues: p.clues.length, answers: p.answers.length, methods: ['flashcards', 'tossups', 'matching'], ...extra });
+  index.packs.push({ id: p.id, title: p.title, site: p.site, file, clues: p.clues.length, answers: p.answers.length, ...extra });
   console.log(`${p.id}: ${p.clues.length} clues, ${p.answers.length} answers, ${(size / 1e6).toFixed(1)} MB`);
 }
 
@@ -163,26 +168,45 @@ if (args.history) {
   // party?"), so the category goes in front of the clue.
   const SMALL = new Set(['a', 'an', 'and', 'the', 'of', 'in', 'on', 'for', 'to', 'by', 'or', 'at', 'vs']);
   const titleCase = (t) => (t === t.toUpperCase() ? t.toLowerCase().split(' ').map((w, i) => (i && SMALL.has(w) ? w : w.charAt(0).toUpperCase() + w.slice(1))).join(' ') : t);
-  const addQ = (q, kind, context = '') => {
+  // The History site keys what you've mastered by quarter and question text (makeMasteredKey and
+  // q3Key in its index.html); hist-site.json keeps what its missed list needs for each question.
+  const siteKey = (quarter, text) => `Q${quarter}|${String(text || '').toLowerCase().replace(/\s+/g, ' ').trim().slice(0, 100)}`;
+  const setOf = (x, id) => String(x.set || (/^([ABCN])-/.exec(String(id || '')) || [])[1] || (/^Nat-/.test(String(id)) ? 'N' : '')).toUpperCase() || null;
+  const site = { q: {}, cats: {} };
+  const addQ = (q, kind, { quarter, set, cat = null } = {}) => {
     if (!q || !q.id || !q.question || !q.answer) return;
     const forms = (Array.isArray(q.answer) ? q.answer : [q.answer]).map(String).filter(Boolean);
     if (!forms.length) return;
     const packKey = PACKS[q.questionSetCategory] || 'other';
-    const base = { question: q.id, forms, pack: `hist-${packKey}`, packTitle: TITLES[packKey], sub: q.questionSetCategory || '' };
-    if (kind === 'single') items.push({ ...base, key: `hist:${q.id}`, text: (context ? `${titleCase(cleanText(context)).replace(/[.:…]+$/, '')}: ` : '') + cleanText(q.question) });
+    const key = quarter === 3 ? siteKey(3, `${cat.category || ''} :: ${q.question}`) : siteKey(quarter, q.question);
+    const category = q.questionSetCategory || (cat && cat.questionSetCategory) || 'Unknown';
+    site.q[key] = { t: q.question, a: q.answer, qr: quarter, c: category, s: set, ...(cat ? { cat: `${set}|${cat.category}` } : {}) };
+    const base = { question: q.id, forms, pack: `hist-${packKey}`, packTitle: TITLES[packKey], sub: q.questionSetCategory || '', src: [key, quarter, set, category] };
+    if (kind === 'single') items.push({ ...base, key: `hist:${q.id}`, text: (cat ? `${titleCase(cleanText(cat.category)).replace(/[.:…]+$/, '')}: ` : '') + cleanText(q.question) });
     else tossupClues(q.question).forEach((text, i) => items.push({ ...base, key: `hist:${q.id}#${i + 1}`, text }));
   };
   for (const f of ['questions.json', 'questions_nationals.json']) {
     const file = path.join(root, f);
     if (!fs.existsSync(file)) continue;
     const d = readJSON(file);
-    (d.q1 || []).forEach((q) => addQ(q, 'tossup'));
-    (d.q2 || []).forEach((x) => addQ(x.tossup, 'tossup'));
-    (d.q3 || []).forEach((g) => (g.questions || []).forEach((q) => addQ(q, 'single', g.category || '')));
+    (d.q1 || []).forEach((q) => addQ(q, 'tossup', { quarter: 1, set: setOf(q, q.id) }));
+    (d.q2 || []).forEach((x) => x.tossup && addQ(x.tossup, 'tossup', { quarter: 2, set: setOf(x, x.tossup.id) }));
+    (d.q3 || []).forEach((g) => {
+      const set = setOf(g, g.questions?.[0]?.id);
+      site.cats[`${set}|${g.category}`] = { category: g.category, prompt: g.prompt || '', questionSetCategory: g.questionSetCategory || 'Unknown', questions: g.questions || [] };
+      (g.questions || []).forEach((q) => addQ(q, 'single', { quarter: 3, set, cat: g }));
+    });
   }
   // History answers are grouped on the full answer (no feature words dropped: "Nile" the battle and
   // the river shouldn't merge here).
-  for (const p of buildPacks('history', items, (a) => plainKey(firstAlt(a)))) write(p, {});
+  for (const p of buildPacks('history', items, (a) => plainKey(firstAlt(a)))) {
+    // <pack>.site.json: what the History site's missed list needs for this pack's questions
+    // (full text and answer line; quarter-3 categories whole). Loaded only when needed.
+    const part = { q: {}, cats: {} };
+    for (const [key] of p.src) { const q = site.q[key]; part.q[key] = q; if (q.cat) part.cats[q.cat] = site.cats[q.cat]; }
+    fs.writeFileSync(path.join(OUT, `${p.id}.site.json`), JSON.stringify(part));
+    write(p, { siteFile: `${p.id}.site.json` });
+  }
 }
 
 if (IS_CLI) {

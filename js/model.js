@@ -1,13 +1,14 @@
-// Everything derived from the event log, recomputed when the log grows: memory, calibration
-// results, the student's per-method estimates, what's due, and the pace check.
+// Everything derived from the event log, recomputed when the log changes: memory, calibration
+// results, the student's per-method estimates, what's due, sessions left unfinished, and the pace
+// check.
 import * as store from './store.js';
-import { buildMemory, dueClues, forecast } from './engine/memory.js';
-import { stepMetrics, studySessionsByMethod, reviewAccuracy, activeMinutesSince } from './engine/metrics.js';
+import { buildMemory, dueClues, forecast, status } from './engine/memory.js';
+import { stepMetrics, studySessionsByMethod, reviewAccuracy, activeMinutesSince, studyEvidence } from './engine/metrics.js';
 import { posteriors, chanceBest, pickMethod, expectedYield, DEFAULT_BLUEPRINT } from './engine/personalize.js';
 import { adjustPace, PACE_LEVELS } from './engine/pace.js';
-import { assign, nextCheckin, METHODS } from './engine/calibration.js';
+import { assign, nextCheckin, METHODS, redoStep as redoCalibrationStep } from './engine/calibration.js';
 import { makeRng, DAY_MS } from './engine/util.js';
-import { clue as clueById } from './content.js';
+import { clue as clueById, allClues, packOf } from './content.js';
 
 let cache = { rev: -1, id: null };
 function fresh() {
@@ -27,41 +28,92 @@ export const isReal = (clueId) => String(clueId).includes(':');
 export function realMemory() {
   return memo('realMem', () => Object.fromEntries(Object.entries(memory()).filter(([id]) => isReal(id))));
 }
+// Reviews for today: missed clues first, then the ones FSRS says are due.
 export function due(packs = null, now = Date.now()) {
   const mem = realMemory();
   return dueClues(mem, now).filter((x) => { const c = clueById(x.clue); return c && (!packs || packs.includes(c.pack)); });
 }
 export const weekForecast = () => forecast(realMemory(), 7);
 
+// Mastered / missed / not yet studied, per site, over the loaded packs (like the sites count them).
+export function counts(packs) {
+  return memo('counts:' + (packs || []).join(','), () => {
+    const mem = realMemory();
+    const out = {};
+    for (const c of allClues()) {
+      if (packs && !packs.includes(c.pack)) continue;
+      const site = packOf(c.pack)?.site || 'other';
+      const o = out[site] || (out[site] = { new: 0, learning: 0, missed: 0, mastered: 0, total: 0 });
+      o[status(mem[c.id])]++; o.total++;
+    }
+    return out;
+  });
+}
+
+// ---- sessions ----
+// A session logs session-start when it begins and session when it ends; session-pause records
+// what was done before leaving. A start with no end is unfinished and can be resumed.
+export function unfinished() {
+  return memo('unfinished', (d) => {
+    const open = new Map();
+    for (const e of d.events) {
+      if (e.type === 'session-start') open.set(e.sessionId, { start: e, pauses: [] });
+      else if (e.type === 'session-pause' && open.has(e.sessionId)) open.get(e.sessionId).pauses.push(e);
+      else if ((e.type === 'session' || e.type === 'session-discard') && open.has(e.sessionId)) open.delete(e.sessionId);
+    }
+    return [...open.values()].map((x) => ({
+      ...x, sessionId: x.start.sessionId, kind: x.start.kind,
+      activeMs: x.pauses.reduce((s, p) => s + (p.activeMs || 0), 0),
+      answers: d.events.filter((e) => e.type === 'answer' && e.sessionId === x.start.sessionId && e.credit !== 'unread' && !e.pretest && !e.cue),
+      exposed: new Set(d.events.filter((e) => e.type === 'expose' && e.sessionId === x.start.sessionId).map((e) => e.clue)),
+    })).sort((a, b) => b.start.t - a.start.t);
+  });
+}
+export function pausedMs(sessionId) {
+  return store.current().events.filter((e) => e.type === 'session-pause' && e.sessionId === sessionId).reduce((s, e) => s + (e.activeMs || 0), 0);
+}
+
 // ---- calibration ----
-export function startCalibration(protocol, civIds) {
+export async function startCalibration(protocol, civIds, chosen = null) {
   const d = store.current();
+  const p = await store.participant();
   d.calibration = {
-    protocol, participant: d.profile.participant, started: Date.now(),
-    steps: assign(d.profile.participant, civIds, protocol).map((s) => ({ ...s, sessionId: null, startedAt: null, finishedAt: null, doneDays: [] })),
+    protocol, participant: p, started: Date.now(), chosen: chosen || null,
+    steps: assign(p, civIds, protocol, chosen).map((s) => ({ ...s, sessionId: null, startedAt: null, finishedAt: null, doneDays: [], stage: null, activeMs: 0, extraMs: 0 })),
   };
-  store.log({ type: 'calibration-start', protocol, participant: d.profile.participant, steps: d.calibration.steps.map((s) => [s.method, s.civ]) });
+  store.log({ type: 'calibration-start', protocol, participant: p, steps: d.calibration.steps.map((s) => [s.method, s.civ]) });
   store.saveNow();
 }
 export function calibrationSteps() { return store.current().calibration?.steps || []; }
-export function nextStep() { return calibrationSteps().find((s) => !s.finishedAt) || null; }
+export function nextStep() { return calibrationSteps().find((s) => !s.finishedAt && !s.skipped) || null; }
 export function checkinsDue(now = Date.now()) {
-  return calibrationSteps().map((s, i) => ({ step: s, index: i, due: nextCheckin(s, s.doneDays, now) })).filter((x) => x.due);
+  return calibrationSteps().map((s, i) => ({ step: s, index: i, due: s.skipped ? null : nextCheckin(s, s.doneDays, now) })).filter((x) => x.due);
 }
 export function stepResults() {
-  return memo('steps', (d) => calibrationSteps().filter((s) => s.finishedAt).map((s) => stepMetrics(s, d.events, d.settings.horizonDays)));
+  return memo('steps', (d) => calibrationSteps().filter((s) => s.finishedAt && !s.skipped).map((s) => stepMetrics(s, d.events, d.settings.horizonDays)));
 }
+// Set a method's calibration attempt aside and start it again (see engine/calibration.js).
+export function redoStep(i, civIds, reason = '') {
+  const d = store.current();
+  const old = d.calibration.steps[i].sessionId;
+  const r = redoCalibrationStep(d.calibration, i, civIds, reason);
+  store.log({ type: 'calibration-redo', step: i, method: d.calibration.steps[i].method, old, civ: r?.civ || null, reason });
+  store.touch();
+  store.saveNow();
+  return r;
+}
+export const studyResults = () => memo('study', (d) => studyEvidence(d.events, d.settings.horizonDays));
 
 // ---- personalization ----
 export const blueprint = () => store.current().blueprint || DEFAULT_BLUEPRINT;
 export function estimates() {
-  return memo('posts', (d) => posteriors(stepResults(), studySessionsByMethod(d.events), blueprint(), d.settings.horizonDays));
+  return memo('posts', (d) => posteriors([...stepResults(), ...studyResults()], studySessionsByMethod(d.events), blueprint(), d.settings.horizonDays));
 }
 export const weeklyHours = () => store.current().settings.weeklyMinutes / 60;
 export function chances(methods = METHODS) {
   return memo('chance:' + methods.join(','), () => chanceBest(estimates(), weeklyHours(), makeRng(store.current().events.length + 7), 3000, methods));
 }
-export function recommend(methods) {
+export function recommend(methods = METHODS) {
   return pickMethod(estimates(), weeklyHours(), makeRng(Date.now() & 0xffffffff), methods);
 }
 export function yields(methods = METHODS) {
@@ -99,6 +151,18 @@ export function checkPace(now = Date.now()) {
     d.pace.history.push({ t: now, from: d.pace.level, to: r.level, reason: r.reason });
     d.pace.level = r.level; d.pace.since = now;
     store.log({ type: 'pace', level: r.level, rate: PACE_LEVELS[r.level], reason: r.reason });
+    store.save();
   }
   return { ...r, inputs };
 }
+
+// What the lab server keeps for the coach: calibration results go with every save, plus a summary.
+store.setStepsProvider(() => stepResults().map(({ fit, ...r }) => r));
+store.setSummaryProvider(() => {
+  const c = counts(null);
+  const p = estimates();
+  const d = store.current();
+  const evidence = stepResults().length || studyResults().length || d.blueprint || d.events.some((e) => e.type === 'session' && e.kind === 'study');
+  const top = evidence ? Object.entries(chances()).sort((a, b) => b[1] - a[1])[0] : null;
+  return { counts: c, pace: pace(), best: top ? { method: top[0], chance: top[1] } : null, kept: Object.fromEntries(METHODS.map((m) => [m, +p[m].kept.mean.toFixed(3)])), updated: Date.now() };
+});

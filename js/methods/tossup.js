@@ -11,7 +11,8 @@ import { STOP, chunk, groupByAnswer, kindTag, continueButton } from './common.js
 
 export const id = 'tossups';
 
-function playTossup(ctx, group, { graded, label }) {
+// opponent (Tossup duel): { clue, word, correct, wrongName } — where the AI buzzes and whether it's right
+export function playTossup(ctx, group, { graded, label, opponent = null }) {
   const order = shuffle(group.clues);
   const a = { name: answerOf(order[0]).name };   // a tossup's clues share the answer; show its usual name
   const msPerChar = ctx.settings.msPerChar || 54;
@@ -21,12 +22,13 @@ function playTossup(ctx, group, { graded, label }) {
   const area = h('div', { class: 'feedback' });
   mount(ctx.stage, h('div', { class: 'card' }, h('div', { class: 'card-top' }, kindTag(order[0]), h('span', { class: 'muted' }, label)), text, h('div', { class: 'row' }, buzz, status), area));
   return new Promise((resolve) => {
-    let clueIdx = 0, wordIdx = 0, timer = null, buzzed = false, finished = false;
+    let clueIdx = 0, wordIdx = 0, timer = null, buzzed = false, finished = false, oppDone = !opponent, aiWon = false;
     const words = order.map((c) => c.study.split(/\s+/));
     const spans = order.map(() => h('span', { class: 'clue-sent' }));
     spans.forEach((s, i) => { text.append(s); if (i < spans.length - 1) text.append(' '); });
     const step = () => {
       if (buzzed) return;
+      if (!oppDone && (clueIdx > opponent.clue || (clueIdx === opponent.clue && wordIdx >= opponent.word))) return aiBuzz();
       if (clueIdx >= words.length) { finished = true; status.textContent = 'All clues read. Buzz now or wait…'; timer = setTimeout(() => onBuzz(true), graded ? 5000 : 1200); return; }
       const w = words[clueIdx][wordIdx];
       spans[clueIdx].textContent += (wordIdx ? ' ' : '') + w;
@@ -40,6 +42,16 @@ function playTossup(ctx, group, { graded, label }) {
     buzz.addEventListener('click', () => onBuzz(false));
     ctx.wait(new Promise(() => {})).then((r) => { if (r === STOP) { cleanup(); resolve(STOP); } });
     function cleanup() { clearTimeout(timer); window.removeEventListener('keydown', key); }
+    function aiBuzz() {
+      oppDone = true;
+      if (opponent.correct) {
+        aiWon = true;
+        status.textContent = `🤖 The AI buzzed: “${a.name}” — right. What would you have said?`;
+        return onBuzz(false);
+      }
+      status.textContent = `🤖 The AI buzzed: “${opponent.wrongName}” — wrong! Your turn: keep listening.`;
+      timer = setTimeout(step, 900);
+    }
     async function onBuzz(noBuzz) {
       if (buzzed) return;
       buzzed = true; clearTimeout(timer); window.removeEventListener('keydown', key);
@@ -48,7 +60,7 @@ function playTossup(ctx, group, { graded, label }) {
       const cluesRead = noBuzz ? order.length : Math.min(order.length, clueIdx + (wordIdx > 0 || finished ? 1 : 0)) || 1;
       let given = '', ms = 0;
       if (!noBuzz) {
-        const box = answerBox();
+        const box = answerBox(aiWon ? { placeholder: 'Your answer (practice)' } : undefined);
         mount(area, box.el);
         const r = await ctx.wait(box.promise);
         if (r === STOP) { resolve(STOP); return; }
@@ -63,7 +75,7 @@ function playTossup(ctx, group, { graded, label }) {
         const credit = tossupCredit({ order: order.map((c) => c.id), cluesRead, correct });
         const fix = graded && given && !correct ? h('button', { class: 'btn ghost small', type: 'button', onclick: () => { correct = true; show(); next.el.focus(); } }, 'I was right') : null;
         mount(area,
-          h('div', { class: !graded && noBuzz ? 'plain' : correct ? 'ok' : 'no' }, correct ? '✓ ' : !graded && noBuzz ? '' : noBuzz ? 'No buzz. ' : `✗ You said “${given || '—'}”. `, 'Answer: ', h('strong', {}, a.name)),
+          h('div', { class: !graded && noBuzz ? 'plain' : correct ? 'ok' : 'no' }, correct ? '✓ ' : !graded && noBuzz ? '' : noBuzz ? 'No buzz. ' : `✗ You said “${given || '—'}”. `, 'Answer: ', h('strong', {}, a.name), opponent ? h('span', { class: 'muted' }, aiWon ? ' — point to the AI' : correct ? ' — your point' : '') : null),
           h('ol', { class: 'reveal-list' }, order.map((c, i) => h('li', { class: graded ? credit[i].credit : 'read' }, c.study, graded ? h('span', { class: 'badge' }, badge[credit[i].credit]) : null))),
           h('div', { class: 'row' }, next.el, fix));
         return credit;
@@ -74,10 +86,10 @@ function playTossup(ctx, group, { graded, label }) {
         const credit = tossupCredit({ order: order.map((c) => c.id), cluesRead, correct });
         for (const cr of credit) {
           const c = order.find((x) => x.id === cr.clue);
-          ctx.answer(c, !!cr.correct, ms, { format: 'tossup', credit: cr.credit, cluesRead, given: given || undefined });
+          ctx.answer(c, !!cr.correct, ms, { format: 'tossup', credit: cr.credit, cluesRead, given: given || undefined, ...(opponent ? { duel: aiWon ? 'ai' : correct ? 'you' : 'none' } : {}) });
         }
       }
-      resolve(w === STOP ? STOP : { correct, cluesRead });
+      resolve(w === STOP ? STOP : { correct, cluesRead, aiWon });
     }
     step();
   });

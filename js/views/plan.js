@@ -22,7 +22,9 @@ export async function renderPlan(root) {
   await selectedPacks().catch(() => []);
   const d = store.current(), st = d.settings;
   const kept = model.keptShare(REAL_METHODS);
-  const plan = planWeek({ weeklyMinutes: st.weeklyMinutes, studyDays: st.studyDays, forecast: model.weekForecast(), secPerReview: secPerReview(), pace: model.pace(), keptShare: kept, target: st.target || null, capMinutes: st.capMinutes || null });
+  // the weekly target comes from the coach (coach view); without one, the plan uses your minutes
+  const target = d.coach?.target || 0, cap = d.coach?.capMinutes || 0;
+  const plan = planWeek({ weeklyMinutes: st.weeklyMinutes, studyDays: st.studyDays, forecast: model.weekForecast(), secPerReview: secPerReview(), pace: model.pace(), keptShare: kept, target: target || null, capMinutes: cap || null });
   const pi = model.paceInputs();
   const dayName = (i) => new Date(Date.now() + i * 86400000).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
   const weeksLeft = st.tournamentDate ? Math.max(0, (new Date(st.tournamentDate + 'T12:00:00') - Date.now()) / (7 * 86400000)) : null;
@@ -36,7 +38,7 @@ export async function renderPlan(root) {
       h('div', { class: 'stat' }, h('b', {}, `${Math.round(plan.totalMinutes)} min`), h('span', {}, 'in total')),
       h('div', { class: 'stat' }, h('b', {}, String(plan.target)), h('span', {}, `still known in ${st.horizonDays} days`))),
     plan.note ? h('div', { class: 'callout' }, plan.note) : null,
-    st.target ? h('p', { class: 'muted' }, `Target mode: ${st.target} clues to still know in ${st.horizonDays} days. At your pace (${model.pace()} new clues/hour) and the share you keep (${pct(kept)}), that's ${Math.round(plan.newClues)} new clues and ${Math.round(plan.totalMinutes)} minutes this week.`) : h('p', { class: 'muted' }, `Time mode: ${st.weeklyMinutes} minutes over ${st.studyDays} days. Reviews come first; the rest goes to new clues at ${model.pace()} per hour.`),
+    target ? h('p', { class: 'muted' }, `Your coach's target: ${target} clues to still know in ${st.horizonDays} days. At your pace (${model.pace()} new clues/hour) and the share you keep (${pct(kept)}), that's ${Math.round(plan.newClues)} new clues and ${Math.round(plan.totalMinutes)} minutes this week.`) : h('p', { class: 'muted' }, `Time mode: ${st.weeklyMinutes} minutes over ${st.studyDays} days. Reviews come first; the rest goes to new clues at ${model.pace()} per hour.`),
     h('div', { class: 'table-wrap' }, h('table', { class: 'grid' },
       h('thead', {}, h('tr', {}, ['Day', 'Reviews', 'New clues', 'Minutes'].map((x, i) => h('th', { class: i ? 'num' : '' }, x)))),
       h('tbody', {}, plan.days.map((x) => h('tr', { class: x.study ? '' : 'rest' },
