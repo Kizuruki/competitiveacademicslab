@@ -8,5 +8,5 @@ compatibility_date = "2025-10-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "study-lab"
-database_id = "REPLACE-WITH-YOUR-DATABASE-ID"
+database_name = "db"
+database_id = "79ac53d2-74ec-4bf2-923d-9599904a60ce"
